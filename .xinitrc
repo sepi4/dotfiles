@@ -6,7 +6,7 @@ if [[ "$(xrandr | grep VGA)" != "" ]]; then
 
   while true; do
       # Log stderror to a file 
-      # ~/.dwmScript.sh &
+      ~/.dwm_script.sh &
       dwm 2> ~/.dwm.log
       # No error logging
       #dwm >/dev/null 2>&1
