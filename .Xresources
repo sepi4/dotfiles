@@ -1,0 +1,8 @@
+xterm*faceName: monospace:pixelsize=12
+!xterm*faceName: monospace:pixelsize=16
+
+xterm*utf8: 2
+xterm*locale: true
+
+xterm*background: black
+xterm*foreground: lightgray
