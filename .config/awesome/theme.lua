@@ -11,9 +11,10 @@ local themes_path = gfs.get_themes_dir()
 
 local theme = {}
 
-theme.font          = "sans 10"
+-- theme.font          = "sans 10"
 -- theme.font          = "Liberation Sans 10"
 -- theme.font          = "Terminus (TTF) 12"
+theme.font          = "Consolas 10"
 -- theme.font          = "Ubuntu Mono"
 
 theme.bg_normal     = "#0d001a"

@@ -1,4 +1,5 @@
-xterm*faceName: Terminus (TTF):pixelsize=16
+xterm*faceName: Consolas:pixelsize=12
+!xterm*faceName: Terminus (TTF):pixelsize=16
 !xterm*faceName: monospace:pixelsize=16
 
 xterm*utf8: 2
