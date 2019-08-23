@@ -10,3 +10,5 @@ else
 fi
 
 #exec i3
+
+# kissa istuu
