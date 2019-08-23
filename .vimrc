@@ -91,13 +91,10 @@ colorscheme gruvbox
 set background=dark    " Setting dark mode
 
 "============LEARN VIMSCRIPTHE HARD WAY stuff=======================
-
 "++++++++ use 'nore' mapping ALWAYS (no recursive)
 let mapleader = " "
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
-
-iabbrev @@ sepolish@student.jyu.fi
 
 " jos halua harjotella
 " inoremap <esc> <nop>
