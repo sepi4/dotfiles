@@ -12,7 +12,7 @@ if [[ "$(xrandr | grep VGA)" != "" ]]; then
       #dwm >/dev/null 2>&1
   done
 
-  ~/.dwmScript.sh &
+  ~/.dwm_script.sh &
   exec dwm
 
 else
