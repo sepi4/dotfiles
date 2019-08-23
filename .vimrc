@@ -87,7 +87,8 @@ Plug 'morhetz/gruvbox'
 call plug#end()
 
 " colorscheme monokai
-colorscheme gruvbox
+" colorscheme gruvbox
+colorscheme default
 set background=dark    " Setting dark mode
 
 "============LEARN VIMSCRIPTHE HARD WAY stuff=======================
