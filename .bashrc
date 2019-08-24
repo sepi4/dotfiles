@@ -12,3 +12,4 @@ neofetch
 
 VISUAL=vim; export VISUAL EDITOR=vim; export EDITOR
 alias config='/usr/bin/git --git-dir=/home/sepi4/.cfg/ --work-tree=/home/sepi4'
+alias ea='vim ~/.config/awesome/'

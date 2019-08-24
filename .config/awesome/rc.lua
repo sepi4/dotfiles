@@ -206,7 +206,11 @@ awful.screen.connect_for_each_screen(function(s)
     }
 
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top", screen = s })
+    s.mywibox = awful.wibar({ 
+      position = "top", 
+      screen = s,
+      height = 19
+    })
 
     -- Add widgets to the wibox
     s.mywibox:setup {
@@ -367,10 +371,10 @@ globalkeys = gears.table.join(
               {description = "lua execute prompt", group = "awesome"}),
 
     -- Menubar
-    awful.key({ modkey }, "r", function() menubar.show() end,
+    awful.key({ modkey, "Shift" }, "p", function() menubar.show() end,
               {description = "show the menubar", group = "launcher"}),
    
-    awful.key({ modkey }, "p", function() awful.util.spawn("dmenu_run") end,
+    awful.key({ modkey }, "p", function() awful.util.spawn('dmenu_run -fn "Terminus (TTF)-12"') end,
               {description = "dmenu", group = "launcher"})
 
 
@@ -620,4 +624,5 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 
 
 -- SEPI AUTOSTART
+-- clip manager
 awful.util.spawn("copyq")
