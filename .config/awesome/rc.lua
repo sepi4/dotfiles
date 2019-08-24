@@ -371,10 +371,12 @@ globalkeys = gears.table.join(
               {description = "lua execute prompt", group = "awesome"}),
 
     -- Menubar
-    awful.key({ modkey, "Shift" }, "p", function() menubar.show() end,
+    awful.key({ modkey, "Shift" }, "p", 
+      function() menubar.show() end,
               {description = "show the menubar", group = "launcher"}),
    
-    awful.key({ modkey }, "p", function() awful.util.spawn('dmenu_run -fn "Terminus (TTF)-12"') end,
+    awful.key({ modkey }, "p", 
+      function() awful.util.spawn('dmenu_run -fn "Terminus (TTF)-12" -nb "#0d001a" -sb "#330066"') end,
               {description = "dmenu", group = "launcher"})
 
 
@@ -543,8 +545,6 @@ awful.rules.rules = {
     -- Set Firefox to always map on the tag named "2" on screen 1.
     -- { rule = { name = "Mozilla Firefox" },
     --   properties = { screen = 1, tag = "1" } },
-    -- { rule = { class = "Chromium" },
-    --   properties = { screen = 1, tag = "2" } },
     { rule = { name = "Company Of Heroes 2" },
       properties = { screen = 1, tag = "5" } },
 

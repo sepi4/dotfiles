@@ -82,12 +82,14 @@ Plug 'mattn/emmet-vim'
 Plug 'ap/vim-css-color'
 
 Plug 'morhetz/gruvbox'
+Plug 'dracula/vim', { 'as': 'dracula' }
 
 " Initialize plugin system
 call plug#end()
 
-" colorscheme monokai
-colorscheme gruvbox
+colorscheme monokai
+" colorscheme gruvbox
+" colorscheme dracula
 set background=dark    " Setting dark mode
 
 "============LEARN VIMSCRIPTHE HARD WAY stuff=======================
