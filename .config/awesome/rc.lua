@@ -2,6 +2,8 @@
 -- found (e.g. lgi). If LuaRocks is not installed, do nothing.
 pcall(require, "luarocks.loader")
 
+local battery_widget = require("awesome-wm-widgets.battery-widget.battery")
+
 -- Standard awesome library
 local gears = require("gears")
 local awful = require("awful")
@@ -228,6 +230,7 @@ awful.screen.connect_for_each_screen(function(s)
             wibox.widget.systray(),
             mytextclock,
             s.mylayoutbox,
+            battery_widget,
         },
     }
 end)

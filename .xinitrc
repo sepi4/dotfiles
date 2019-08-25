@@ -1,4 +1,5 @@
 #setxkbmap -layout "us,ru -variant phonetic" -option "grp:lwin_toggle"
+setxkbmap -layout "us,fi" -option "grp:lwin_toggle"
 feh --bg-scale ~/Pictures/bg_image.jpg
 
 
