@@ -1,3 +1,5 @@
+#!/bin/sh
+
 xinput disable 10 # off touchpad
 setxkbmap -layout "us,fi" -option "grp:lwin_toggle"
 feh --bg-scale ~/Pictures/bg_image.jpg # background pictures
