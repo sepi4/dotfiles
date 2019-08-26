@@ -1,12 +1,10 @@
 #!/bin/sh
-
-xinput disable 10 # off touchpad
 setxkbmap -layout "us,fi" -option "grp:lwin_toggle"
 feh --bg-scale ~/Pictures/bg_image.jpg # background pictures
 
-
+#if thinkpad
 if [[ "$(xrandr | grep VGA)" != "" ]]; then
-
+  xinput disable 10 # off touchpad
   while true; do
       # Log stderror to a file 
       ~/.dwm_script.sh &
@@ -17,7 +15,6 @@ if [[ "$(xrandr | grep VGA)" != "" ]]; then
 
   ~/.dwm_script.sh &
   exec dwm
-
 else
   [[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
   exec awesome
