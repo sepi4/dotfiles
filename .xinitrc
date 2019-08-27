@@ -1,6 +1,9 @@
 #!/bin/sh
 setxkbmap -layout "us,fi" -option "grp:lwin_toggle"
+
 feh --bg-scale ~/Pictures/bg_image.jpg # background pictures
+
+[[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
 
 #if thinkpad
 if [[ "$(xrandr | grep VGA)" != "" ]]; then
@@ -16,7 +19,6 @@ if [[ "$(xrandr | grep VGA)" != "" ]]; then
   ~/.dwm_script.sh &
   exec dwm
 else
-  [[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
   exec awesome
 fi
 
