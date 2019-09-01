@@ -29,11 +29,15 @@ function prompt
   local NO_COLOUR="\[\033[0m\]"
 
 
+  . ~/git-prompt.sh
+  export GIT_PS1_SHOWDIRTYSTATE=1
   if [[ "$(xrandr | grep VGA)" != "" ]]; then
-    PS1="$RED[$BLUE_BOLD\u$GREEN_BOLD@$CYAN_BOLD\h $YELLOW\W$RED]$NO_COLOUR$ $NO_COLOUR"
+    export PS1="$RED[$BLUE_BOLD\u$GREEN_BOLD@$CYAN_BOLD\h $YELLOW_BOLD\W$RED]\$(__git_ps1 '$NO_COLOUR($GREEN%s$NO_COLOUR)')$NO_COLOUR\$ "
   else
-    PS1='[\u@\h \W]\$ '
+    export PS1="[\u@\h \W] \$(__git_ps1 '$NO_COLOUR($GREEN%s$NO_COLOUR)')$NO_COLOUR\$ "
   fi
+
+
 
 }
 
