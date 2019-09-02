@@ -6,7 +6,7 @@ feh --bg-scale ~/Pictures/bg_image.jpg # background pictures
 [[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
 
 #if thinkpad
-if [[ "$(xrandr | grep VGA)" != "" ]]; then
+# if [[ "$(xrandr | grep VGA)" != "" ]]; then
   xinput disable 10 # off touchpad
   while true; do
       # Log stderror to a file 
@@ -18,8 +18,8 @@ if [[ "$(xrandr | grep VGA)" != "" ]]; then
 
   ~/.dwm_script.sh &
   exec dwm
-else
-  exec awesome
-fi
+# else
+#   exec awesome
+# fi
 
 #exec i3

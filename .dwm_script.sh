@@ -27,9 +27,9 @@ do
 
 	net=`iw dev wlp3s0 link | awk '/SSID/{print $2}'`
 	if [ -z "$bat"]; then
-    xsetroot -name "${date}"
-  else
     xsetroot -name " ${net} | ${pro}% ${bat} ${sign}${power_now_watts}W | ${date}"
+  else
+    xsetroot -name "${date}"
   fi
 
 
