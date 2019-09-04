@@ -38,7 +38,7 @@ function prompt
   #   export PS1="[\u@\h \W] \$(__git_ps1 '$NO_COLOUR($GREEN%s$NO_COLOUR)')$NO_COLOUR\$ "
   # fi
 
-  export PS1="$RED[$BLUE_BOLD\u$GREEN_BOLD@$CYAN_BOLD\h $YELLOW_BOLD\W$RED]\$(__git_ps1 '$NO_COLOUR($GREEN%s$NO_COLOUR)')$NO_COLOUR\$ "
+  export PS1="$GREEN_BOLD[$BLUE_BOLD\u$RED_BOLD@$CYAN_BOLD\h $YELLOW_BOLD\W$GREEN_BOLD]\$(__git_ps1 '$NO_COLOUR($GREEN%s$NO_COLOUR)')$NO_COLOUR\$ "
 
 
 }
