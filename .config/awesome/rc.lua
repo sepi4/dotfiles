@@ -54,7 +54,7 @@ end
 beautiful.init("/home/sepi4/.config/awesome/theme.lua") 
 -- This is used later as the default terminal and editor to run.
 -- terminal = "xfce4-terminal"
-terminal = "xterm"
+terminal = "st"
 editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -247,6 +247,8 @@ root.buttons(gears.table.join(
 globalkeys = gears.table.join(
 
     -- SEPI HOTKEYS
+    awful.key({ modkey, "Shift" }, "t",  function() awful.tag.viewtoggle() end,
+              {description="toggle windows", group="awesome"}),
     awful.key({ }, "Pause", function() awful.util.spawn('xmodmap -e "keycode 65 = space"') end,
               {description = "space to Numpad0", group = "coh2"}),
     awful.key({ }, "Scroll_Lock", function() awful.util.spawn('xmodmap -e "keycode 65 = KP_0"') end,
@@ -504,6 +506,7 @@ awful.rules.rules = {
                      border_color = beautiful.border_normal,
                      focus = awful.client.focus.filter,
                      raise = true,
+                     size_hints_honor = false, -- sepi, no bottom space
                      keys = clientkeys,
                      buttons = clientbuttons,
                      screen = awful.screen.preferred,

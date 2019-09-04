@@ -31,18 +31,20 @@ function prompt
 
   . ~/git-prompt.sh
   export GIT_PS1_SHOWDIRTYSTATE=1
-  if [[ "$(xrandr | grep VGA)" != "" ]]; then
-    export PS1="$RED[$BLUE_BOLD\u$GREEN_BOLD@$CYAN_BOLD\h $YELLOW_BOLD\W$RED]\$(__git_ps1 '$NO_COLOUR($GREEN%s$NO_COLOUR)')$NO_COLOUR\$ "
-  else
-    export PS1="[\u@\h \W] \$(__git_ps1 '$NO_COLOUR($GREEN%s$NO_COLOUR)')$NO_COLOUR\$ "
-  fi
 
+  # if [[ "$(xrandr | grep VGA)" != "" ]]; then
+  #   export PS1="$RED[$BLUE_BOLD\u$GREEN_BOLD@$CYAN_BOLD\h $YELLOW_BOLD\W$RED]\$(__git_ps1 '$NO_COLOUR($GREEN%s$NO_COLOUR)')$NO_COLOUR\$ "
+  # else
+  #   export PS1="[\u@\h \W] \$(__git_ps1 '$NO_COLOUR($GREEN%s$NO_COLOUR)')$NO_COLOUR\$ "
+  # fi
+
+  export PS1="$RED[$BLUE_BOLD\u$GREEN_BOLD@$CYAN_BOLD\h $YELLOW_BOLD\W$RED]\$(__git_ps1 '$NO_COLOUR($GREEN%s$NO_COLOUR)')$NO_COLOUR\$ "
 
 
 }
 
 prompt
 
-VISUAL=vim; export VISUAL EDITOR=vim; export EDITOR
+VISUAL=nvim; export VISUAL EDITOR=nvim; export EDITOR
 alias config='/usr/bin/git --git-dir=/home/sepi4/.cfg/ --work-tree=/home/sepi4'
-alias ea='vim ~/.config/awesome/'
+alias ea='nvim ~/.config/awesome/'
