@@ -26,7 +26,7 @@
 
 from libqtile.config import Key, Screen, Group, Drag, Click
 from libqtile.command import lazy
-from libqtile import layout, bar, widget
+from libqtile import layout, bar, widget, extension
 
 from typing import List  # noqa: F401
 
@@ -34,12 +34,27 @@ mod = "mod1"
 
 keys = [
     # Switch between windows in current stack pane
-    Key([mod], "k", lazy.layout.down()),
-    Key([mod], "j", lazy.layout.up()),
+    Key([mod], "h", lazy.layout.left()),
+    Key([mod], "l", lazy.layout.right()),
+    Key([mod], "j", lazy.layout.down()),
+    Key([mod], "k", lazy.layout.up()),
+    Key([mod, "shift"], "h", lazy.layout.swap_left()),
+    Key([mod, "shift"], "l", lazy.layout.swap_right()),
+    Key([mod, "shift"], "j", lazy.layout.shuffle_down()),
+    Key([mod, "shift"], "k", lazy.layout.shuffle_up()),
 
-    # Move windows up or down in current stack
-    Key([mod, "control"], "k", lazy.layout.shuffle_down()),
-    Key([mod, "control"], "j", lazy.layout.shuffle_up()),
+    Key([mod], "i", lazy.layout.grow()),
+    Key([mod], "m", lazy.layout.shrink()),
+
+    Key([mod], "n", lazy.layout.normalize()),
+    Key([mod], "o", lazy.layout.maximize()),
+    # Key([mod, "shift"], "space", lazy.layout.flip()),
+
+    # Key([mod], 'p', lazy.run_extension(extension.Dmenu())),
+    Key([mod], 'p', lazy.spawn("dmenu_run -fn 'Terminus (TTF):size=14' -nb '#292d3e' -nf '#bbc5ff' -sb '#82AAFF' -sf '#292d3e' -p 'dmenu:'")),
+
+    Key([mod], 'a', lazy.spawn('xmodmap -e "keycode 65 = KP_0"')),
+    
 
     # Switch window focus to other pane(s) of stack
     Key([mod], "space", lazy.layout.next()),
@@ -61,6 +76,7 @@ keys = [
     Key([mod, "control"], "r", lazy.restart()),
     Key([mod, "control"], "q", lazy.shutdown()),
     Key([mod], "r", lazy.spawncmd()),
+    Key([mod, "shift"], "t", lazy.window.toggle_floating()),
 ]
 
 groups = [Group(i) for i in "12345"]
@@ -81,8 +97,8 @@ layouts = [
 ]
 
 widget_defaults = dict(
-    font='sans',
-    fontsize=12,
+    font='Terminus (TTF)',
+    fontsize=14,
     padding=3,
 )
 extension_defaults = widget_defaults.copy()
@@ -94,10 +110,14 @@ screens = [
                 widget.GroupBox(),
                 widget.Prompt(),
                 widget.WindowName(),
-                widget.TextBox("default config", name="default"),
+
+                # widget.TaskList(),
+                # widget.WindowTabs(),
+                # widget.TextBox("default config", name="default"),
                 widget.Systray(),
-                widget.Battery(),
+                # widget.Battery(),
                 widget.Clock(format='%d-%m-%y %a %H:%M'),
+                widget.KeyboardLayout(),
             ],
             24,
         ),

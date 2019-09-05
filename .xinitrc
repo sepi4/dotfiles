@@ -23,5 +23,6 @@ feh --bg-scale ~/Pictures/bg_image.jpg # background pictures
 #fi
 
 #exec i3
-#exec awesome
-exec qtile
+exec awesome
+# exec qtile
+# exec xmonad
