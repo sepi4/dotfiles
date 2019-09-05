@@ -7,7 +7,6 @@ local gears = require("gears")
 local awful = require("awful")
 
 -- sepi
-local battery_widget = require("awesome-wm-widgets.battery-widget.battery")
 
 
 -- local lain = require("lain")
@@ -122,12 +121,7 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 -- Create a textclock widget
 mytextclock = wibox.widget.textclock()
 
-munteksti = wibox.widget{
-    markup = 'kissa istuu',
-    align  = 'center',
-    valign = 'center',
-    widget = wibox.widget.textbox
-}
+
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
