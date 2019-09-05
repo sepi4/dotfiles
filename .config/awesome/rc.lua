@@ -5,6 +5,10 @@ pcall(require, "luarocks.loader")
 -- Standard awesome library
 local gears = require("gears")
 local awful = require("awful")
+
+-- sepi
+
+
 -- local lain = require("lain")
 require("awful.autofocus")
 -- Widget and layout library
@@ -116,8 +120,8 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 -- {{{ Wibar
 -- Create a textclock widget
 mytextclock = wibox.widget.textclock()
-local month_calendar = awful.widget.calendar_popup.month()
-month_calendar:attach( mytextclock, "tr" )
+
+
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
