@@ -23,6 +23,7 @@ feh --bg-scale ~/Pictures/bg_image.jpg # background pictures
 #fi
 
 #exec i3
+xinput disable 10 # off touchpad
 exec awesome
 # exec qtile
 # exec xmonad

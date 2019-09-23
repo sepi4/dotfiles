@@ -7,6 +7,12 @@ local gears = require("gears")
 local awful = require("awful")
 
 -- sepi
+-- function testi()
+--   kissa = "kissa"
+--   kissa = string.upper(kissa)
+--   print(kissa)
+-- end
+local battery_widget = require("awesome-wm-widgets.battery-widget.battery")
 
 
 -- local lain = require("lain")
@@ -230,8 +236,8 @@ awful.screen.connect_for_each_screen(function(s)
             mykeyboardlayout,
             wibox.widget.systray(),
             mytextclock,
-            s.mylayoutbox,
             battery_widget,
+            s.mylayoutbox,
             munteksti,
         },
     }
@@ -252,6 +258,10 @@ root.buttons(gears.table.join(
 globalkeys = gears.table.join(
 
     -- SEPI HOTKEYS
+    awful.key({}, "XF86AudioMute", function() os.execute("pamixer -t") end),
+    awful.key({}, "XF86AudioRaiseVolume", function() os.execute("pamixer -i 5") end),
+    awful.key({}, "XF86AudioLowerVolume", function() os.execute("pamixer -d 5") end),
+
     awful.key({ modkey, "Shift" }, "t",  function() awful.tag.viewtoggle() end,
               {description="toggle windows", group="awesome"}),
     awful.key({ }, "Pause", function() awful.util.spawn('xmodmap -e "keycode 65 = space"') end,

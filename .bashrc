@@ -46,5 +46,7 @@ function prompt
 prompt
 
 VISUAL=nvim; export VISUAL EDITOR=nvim; export EDITOR
+export BROWSER=/usr/bin/google-chrome-stable
 alias config='/usr/bin/git --git-dir=/home/sepi4/.cfg/ --work-tree=/home/sepi4'
 alias ea='nvim ~/.config/awesome/'
+
