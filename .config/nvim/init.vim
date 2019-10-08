@@ -201,7 +201,13 @@ endif
 
 " let g:material_terminal_italics = 1
 " let g:material_theme_style = 'darker'
-colorscheme base16-material-darker
+" colorscheme base16-material-darker
+colorscheme sepi-material-2
+
+
+
+
+
 
 "============LEARN VIMSCRIPTHE HARD WAY stuff=======================
 "++++++++ use 'nore' mapping ALWAYS (no recursive)
