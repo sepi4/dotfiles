@@ -19,9 +19,9 @@ let s:gui00        = "0f0f0f" " #0f0f0f
 let g:base16_gui00 = "111111"
 let s:gui01        = "303030" " #303030
 let g:base16_gui01 = "303030"
-let s:gui02        = "555555" " #555555
+let s:gui02        = "353535" " #353535
 let g:base16_gui02 = "353535"
-let s:gui03        = "3e3e3e" " #3e3e3e
+let s:gui03        = "8A8A8A" " #8A8A8A
 let g:base16_gui03 = "4A4A4A"
 let s:gui04        = "B2CCD6" " #B2CCD6
 let g:base16_gui04 = "B2CCD6"
@@ -35,7 +35,7 @@ let s:gui08        = "ff6666" " #ff6666
 let g:base16_gui08 = "F07178"
 let s:gui09        = "F78C6C" " #F78C6C
 let g:base16_gui09 = "F78C6C"
-let s:gui0A        = "ffd500" " #ffc400
+let s:gui0A        = "fbff00" " #fbff00
 let g:base16_gui0A = "FFCB6B"
 let s:gui0B        = "62ff3b" " #62ff3b
 let g:base16_gui0B = "C3E88D"
@@ -208,7 +208,7 @@ call <sid>hi("Title",         s:gui0D, "", s:cterm0D, "", "none", "")
 call <sid>hi("Conceal",       s:gui0D, s:gui00, s:cterm0D, s:cterm00, "", "")
 call <sid>hi("Cursor",        s:gui00, s:gui05, s:cterm00, s:cterm05, "", "")
 call <sid>hi("NonText",       s:gui03, "", s:cterm03, "", "", "")
-call <sid>hi("LineNr",        s:gui04, s:gui01, s:cterm03, s:cterm01, "", "")
+call <sid>hi("LineNr",        s:gui03, s:gui01, s:cterm03, s:cterm01, "", "")
 call <sid>hi("SignColumn",    s:gui03, s:gui01, s:cterm03, s:cterm01, "", "")
 call <sid>hi("StatusLine",    s:gui04, s:gui02, s:cterm04, s:cterm02, "none", "")
 call <sid>hi("StatusLineNC",  s:gui03, s:gui01, s:cterm03, s:cterm01, "none", "")
@@ -227,7 +227,7 @@ call <sid>hi("TabLineSel",    s:gui0B, s:gui01, s:cterm0B, s:cterm01, "none", ""
 " Standard syntax highlighting
 call <sid>hi("Boolean",      s:gui09, "", s:cterm09, "", "", "")
 call <sid>hi("Character",    s:gui08, "", s:cterm08, "", "", "")
-call <sid>hi("Comment",      s:gui02, "", s:cterm03, "", "", "")
+call <sid>hi("Comment",      s:gui03, "", s:cterm03, "", "", "")
 call <sid>hi("Conditional",  s:gui0E, "", s:cterm0E, "", "", "")
 call <sid>hi("Constant",     s:gui09, "", s:cterm09, "", "", "")
 call <sid>hi("Define",       s:gui0E, "", s:cterm0E, "", "none", "")
