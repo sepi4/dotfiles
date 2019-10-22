@@ -641,3 +641,4 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- SEPI AUTOSTART
 -- clip manager
 awful.util.spawn("copyq")
+awful.util.spawn("nm-applet")
