@@ -122,6 +122,8 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- Keyboard map indicator and switcher
 mykeyboardlayout = awful.widget.keyboardlayout()
 
+myCalendar = awful.widget.watch('bash -c "date \'+%H:%M %a %d.%m\'"', 60)
+
 -- {{{ Wibar
 -- Create a textclock widget
 mytextclock = wibox.widget.textclock()
@@ -235,7 +237,8 @@ awful.screen.connect_for_each_screen(function(s)
             layout = wibox.layout.fixed.horizontal,
             mykeyboardlayout,
             wibox.widget.systray(),
-            mytextclock,
+            -- mytextclock,
+            myCalendar,
             battery_widget,
             s.mylayoutbox,
             munteksti,
