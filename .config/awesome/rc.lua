@@ -122,7 +122,7 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- Keyboard map indicator and switcher
 mykeyboardlayout = awful.widget.keyboardlayout()
 
-myCalendar = awful.widget.watch('bash -c "date \'+%H:%M %a %d.%m\'"', 60)
+myCalendar = awful.widget.watch('bash -c "date \'+ %a %d.%m %H:%M \'"', 60)
 
 -- {{{ Wibar
 -- Create a textclock widget
@@ -645,3 +645,4 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- clip manager
 awful.util.spawn("copyq")
 awful.util.spawn("nm-applet")
+awful.util.spawn("volumeicon")
