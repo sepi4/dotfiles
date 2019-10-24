@@ -646,3 +646,4 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 awful.util.spawn("copyq")
 awful.util.spawn("nm-applet")
 awful.util.spawn("volumeicon")
+awful.util.spawn("blueman-applet")

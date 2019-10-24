@@ -1,5 +1,6 @@
 #!/bin/sh
 setxkbmap -layout "us,fi" -option "grp:lwin_toggle"
+xinput disable 10 # off touchpad
 
 feh --bg-scale ~/Pictures/bg_image.jpg # background pictures
 
@@ -7,7 +8,6 @@ feh --bg-scale ~/Pictures/bg_image.jpg # background pictures
 
 ## if thinkpad
 # if [[ "$(xrandr | grep VGA)" != "" ]]; then
-#  xinput disable 10 # off touchpad
 #  while true; do
 #      # Log stderror to a file 
 #      ~/.dwm_script.sh &
@@ -22,7 +22,14 @@ feh --bg-scale ~/Pictures/bg_image.jpg # background pictures
 #  exec awesome
 #fi
 
+# if thinkpad
+if [[ "$(xrandr | grep VGA)" != "" ]]; then
+  pacman -Qqe > pkglistLaptop.txt
+else
+  pacman -Qqe > pkglistDesktop.txt
+fi
+
 #exec i3
-xinput disable 10 # off touchpad
 exec awesome
 # exec spectrwm
+
