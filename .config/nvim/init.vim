@@ -83,6 +83,8 @@ Plug 'dense-analysis/ale' " eslint
 
 Plug 'tpope/vim-fugitive'
 
+Plug 'mattn/emmet-vim'
+
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
@@ -183,7 +185,7 @@ nnoremap <C-l> <C-w>l
 
 nnoremap <F9> :colorscheme vim-monokai-tasty<cr>
 nnoremap <F10> :colorscheme base16-gruvbox-dark-hard<cr>
-nnoremap <F11> :colorscheme base16-material-darker<cr>
+nnoremap <F11> :colorscheme keltainen<cr>
 nnoremap <F12> :colorscheme sepi-material-2<cr>
 
 nnoremap <silent> <esc> :nohlsearch<cr>
@@ -194,8 +196,8 @@ vnoremap <C-j> :m '>+1<CR>gv=gv
 vnoremap <C-k> :m '<-2<CR>gv=gv
 
 " Automatically indent pasted lines
-" nnoremap p p=`]
-" nnoremap P P=`]
+nnoremap p p=`]
+nnoremap P P=`]
 
 " Re-select the last pasted text
 nnoremap gp `[v`]

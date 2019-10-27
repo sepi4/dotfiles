@@ -38,6 +38,7 @@ filesystem
 findutils
 firefox
 fish
+flatpak
 flex
 fzy
 gawk
@@ -162,6 +163,7 @@ xfce4-settings
 xfce4-terminal
 xfsprogs
 xkeycaps
+xlockmore
 xorg-bdftopcf
 xorg-docs
 xorg-font-util
@@ -214,6 +216,7 @@ xorg-xwininfo
 xorg-xwud
 xpdf
 xterm
+yay
 youtube-dl
 zathura-djvu
 zathura-pdf-mupdf
