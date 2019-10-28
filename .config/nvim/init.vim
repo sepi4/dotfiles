@@ -5,6 +5,7 @@ set nocompatible
 filetype on
 filetype plugin on
 
+
 "Better copy & paste
 set pastetoggle=<F2>
 set autoread
@@ -19,6 +20,7 @@ set textwidth=78
 set number
 set mouse=a
 set smartindent
+set fo-=ro
 
 augroup numbertoggle
   autocmd BufEnter,FocusGained,InsertLeave * setlocal relativenumber

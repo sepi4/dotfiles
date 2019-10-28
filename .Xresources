@@ -1,4 +1,5 @@
-xterm*faceName: Terminus (TTF):pixelsize=22
+!xterm*faceName: Terminus (TTF):pixelsize=22
+xterm*faceName: Meslo LG S DZ:pixelsize=14
 !xterm*faceName: monospace:pixelsize=16
 
 xterm*utf8: 2
@@ -6,3 +7,10 @@ xterm*locale: true
 
 xterm*background: black
 xterm*foreground: lightgray
+
+XTerm*visualBell: True
+
+
+xterm*VT100.Translations: #override \
+                 Ctrl Shift <Key>V:    insert-selection(CLIPBOARD) \n\
+                 Ctrl Shift <Key>C:    copy-selection(CLIPBOARD)

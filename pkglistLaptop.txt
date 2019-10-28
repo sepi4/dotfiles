@@ -98,6 +98,7 @@ pamixer
 patch
 pavucontrol
 pciutils
+pcmanfm
 perl
 pkgconf
 powertop
@@ -134,10 +135,10 @@ systemd-sysvcompat
 tar
 tcpdump
 telegram-desktop
+terminator
 terminus-font-ttf
 termite
 texinfo
-thunar
 tlp
 tlp-rdw
 tp_smapi

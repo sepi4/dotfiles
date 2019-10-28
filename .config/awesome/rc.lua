@@ -63,7 +63,7 @@ end
 -- beautiful.init(gears.filesystem.get_themes_dir() .. "zenburn/theme.lua")
 beautiful.init("/home/sepi4/.config/awesome/theme.lua") 
 -- This is used later as the default terminal and editor to run.
-terminal = "st"
+terminal = "xterm"
 editor = os.getenv("EDITOR") or "nvim"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -350,6 +350,22 @@ globalkeys = gears.table.join(
               {description = "increase master width factor", group = "layout"}),
     awful.key({ modkey,           }, "h",     function () awful.tag.incmwfact(-0.05)          end,
               {description = "decrease master width factor", group = "layout"}),
+
+
+-- awful.key({ modkey, "Control"    }, "Right",     function () awful.tag.incmwfact( 0.01)    end),
+-- awful.key({ modkey, "Control"    }, "Left",     function () awful.tag.incmwfact(-0.01)    end),
+
+awful.key({ modkey, "Control"    }, "k",     function () awful.client.incwfact( 0.01)    end),
+awful.key({ modkey, "Control"    }, "j",     function () awful.client.incwfact(-0.01)    end),
+
+    -- awful.key({ modkey, "Control"   }, "Next",   function (c) c:relative_move( 20,  20, -40, -40) end),
+    -- awful.key({ modkey, "Control"   }, "Prior",  function (c) c:relative_move(-20, -20,  40,  40) end),
+
+    -- awful.key({ modkey,    "Control"}, "k",     function () awful.client.incmwfact( 0.05)          end,
+    --           {description = "increase master width factor", group = "layout"}),
+    -- awful.key({ modkey, "Control"          }, "j",     function () awful.client.incmwfact(-0.05)          end,
+    --           {description = "decrease master width factor", group = "layout"}),
+
     awful.key({ modkey, "Shift"   }, "h",     function () awful.tag.incnmaster( 1, nil, true) end,
               {description = "increase the number of master clients", group = "layout"}),
     awful.key({ modkey, "Shift"   }, "l",     function () awful.tag.incnmaster(-1, nil, true) end,
