@@ -352,11 +352,9 @@ globalkeys = gears.table.join(
               {description = "decrease master width factor", group = "layout"}),
 
 
--- awful.key({ modkey, "Control"    }, "Right",     function () awful.tag.incmwfact( 0.01)    end),
--- awful.key({ modkey, "Control"    }, "Left",     function () awful.tag.incmwfact(-0.01)    end),
 
-awful.key({ modkey, "Control"    }, "k",     function () awful.client.incwfact( 0.01)    end),
-awful.key({ modkey, "Control"    }, "j",     function () awful.client.incwfact(-0.01)    end),
+awful.key({ modkey, "Control"    }, "k",     function () awful.client.incwfact( 0.05)    end),
+awful.key({ modkey, "Control"    }, "j",     function () awful.client.incwfact(-0.05)    end),
 
     -- awful.key({ modkey, "Control"   }, "Next",   function (c) c:relative_move( 20,  20, -40, -40) end),
     -- awful.key({ modkey, "Control"   }, "Prior",  function (c) c:relative_move(-20, -20,  40,  40) end),
