@@ -152,7 +152,6 @@ usbutils
 util-linux
 vi
 vlc
-volumeicon
 w3m
 watchman
 wget

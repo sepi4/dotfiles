@@ -20,7 +20,6 @@ set textwidth=78
 set number
 set mouse=a
 set smartindent
-set fo-=ro
 
 augroup numbertoggle
   autocmd BufEnter,FocusGained,InsertLeave * setlocal relativenumber
@@ -209,3 +208,9 @@ noremap <Leader>w :set wrap!<CR>
 nmap <Leader>a <Plug>(EasyAlign)
 
 let g:OmniSharp_server_stdio = 1
+
+let g:user_emmet_settings = {
+  \  'html': {
+  \      'block_all_childless' : 1,
+  \  },
+  \}
