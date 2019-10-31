@@ -64,6 +64,7 @@ jdk-openjdk
 jfsutils
 jsoncpp
 less
+libmm-glib
 liburcu
 licenses
 linux
