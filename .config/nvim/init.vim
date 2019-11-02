@@ -20,6 +20,7 @@ set textwidth=78
 set number
 set mouse=a
 set smartindent
+set autoindent
 
 augroup numbertoggle
   autocmd BufEnter,FocusGained,InsertLeave * setlocal relativenumber
@@ -27,7 +28,6 @@ augroup numbertoggle
 augroup END
 
 if !has('nvim')
-  set autoindent
   set fileencoding=utf8
   set encoding=utf8
 
@@ -85,6 +85,7 @@ Plug 'dense-analysis/ale' " eslint
 Plug 'tpope/vim-fugitive'
 
 Plug 'mattn/emmet-vim'
+Plug 'kien/ctrlp.vim'
 
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
@@ -125,18 +126,21 @@ let g:ale_fixers = {
 " Prettier
 
 " Make vim-prettier use prettier defaults
-" let g:prettier#config#bracket_spacing="true"
-" let g:prettier#config#jsx_bracket_same_line="false"
-" let g:prettier#config#parser="babylon"
-" let g:prettier#config#single_quote="true"
-" let g:prettier#config#trailing_comma="none"
+let g:prettier#config#bracket_spacing="true"
+let g:prettier#config#jsx_bracket_same_line="false"
+let g:prettier#config#parser="babylon"
+let g:prettier#config#single_quote="true"
+let g:prettier#config#trailing_comma="none"
+let g:prettier#config#semi="false"
 
 " " Don't use vim-prettier's auto-formatting
 " let g:prettier#autoformat=0
 
 " " Run prettier async before saving
-" autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.json,*.graphql,*.md PrettierAsync
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.json,*.graphql,*.md PrettierAsync
 " autocmd BufWritePre .babelrc,.eslintrc,.prettierrc PrettierAsync
+
+nnoremap <leader>p :PrettierAsync<cr>
 
 "-- FOLDING --
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -197,8 +201,10 @@ vnoremap <C-j> :m '>+1<CR>gv=gv
 vnoremap <C-k> :m '<-2<CR>gv=gv
 
 " Automatically indent pasted lines
-nnoremap p p=`]
-nnoremap P P=`]
+" nnoremap p p=`]
+" nnoremap P P=`]
+nnoremap p ]p
+nnoremap <c-p> p
 
 " Re-select the last pasted text
 nnoremap gp `[v`]
@@ -214,3 +220,10 @@ let g:user_emmet_settings = {
   \      'block_all_childless' : 1,
   \  },
   \}
+
+
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+let g:ctrlp_custom_ignore = {
+ \   'dir' : '\.git$\|build$\|bower_components\|node_modules\|dist\|target' ,
+ \  'file' : '\v\.(exe|dll|lib)$'
+ \ }

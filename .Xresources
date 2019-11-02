@@ -18,3 +18,5 @@ xterm*VT100.Translations: #override \
 
 
 XTerm*ptyInitialErase: true
+
+XTerm*pointerShape: left_ptr
