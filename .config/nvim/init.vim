@@ -130,17 +130,17 @@ let g:prettier#config#bracket_spacing="true"
 let g:prettier#config#jsx_bracket_same_line="false"
 let g:prettier#config#parser="babylon"
 let g:prettier#config#single_quote="true"
-let g:prettier#config#trailing_comma="none"
+let g:prettier#config#trailing_comma="all"
 let g:prettier#config#semi="false"
 
 " " Don't use vim-prettier's auto-formatting
-" let g:prettier#autoformat=0
+let g:prettier#autoformat=0
 
 " " Run prettier async before saving
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.json,*.graphql,*.md PrettierAsync
+" autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.json,*.graphql,*.md PrettierAsync
 " autocmd BufWritePre .babelrc,.eslintrc,.prettierrc PrettierAsync
 
-nnoremap <leader>p :PrettierAsync<cr>
+nnoremap <leader>py :PrettierAsync<cr>
 
 "-- FOLDING --
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
