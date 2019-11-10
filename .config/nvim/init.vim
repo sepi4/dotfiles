@@ -22,10 +22,10 @@ set mouse=a
 set smartindent
 set autoindent
 
-augroup numbertoggle
-  autocmd BufEnter,FocusGained,InsertLeave * setlocal relativenumber
-  autocmd BufLeave,FocusLost,InsertEnter   * setlocal norelativenumber
-augroup END
+" augroup numbertoggle
+"   autocmd BufEnter,FocusGained,InsertLeave * setlocal relativenumber
+"   autocmd BufLeave,FocusLost,InsertEnter   * setlocal norelativenumber
+" augroup END
 
 if !has('nvim')
   set fileencoding=utf8
@@ -191,7 +191,7 @@ nnoremap <C-l> <C-w>l
 nnoremap <F9> :colorscheme vim-monokai-tasty<cr>
 nnoremap <F10> :colorscheme base16-gruvbox-dark-hard<cr>
 nnoremap <F11> :colorscheme keltainen<cr>
-nnoremap <F12> :colorscheme sepi-material-2<cr>
+nnoremap <F12> :colorscheme valkoinen<cr>
 
 nnoremap <silent> <esc> :nohlsearch<cr>
 
