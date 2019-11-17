@@ -1,8 +1,4 @@
 #!/bin/sh
-setxkbmap -layout "us,fi" -option "grp:lwin_toggle"
-xinput disable 10 # off touchpad
-
-feh --bg-scale ~/Pictures/bg_image.jpg # background pictures
 
 [[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
 
@@ -24,12 +20,18 @@ feh --bg-scale ~/Pictures/bg_image.jpg # background pictures
 
 # if thinkpad
 if [[ "$(xrandr | grep VGA)" != "" ]]; then
+  setxkbmap -layout "us,fi" -option "grp:lwin_toggle"
+  xinput disable 10 # off touchpad
+
+  feh --bg-scale ~/Pictures/bg_image.jpg # background pictures
+
   pacman -Qqe > pkglistLaptop.txt
+  exec awesome
 else
   pacman -Qqe > pkglistDesktop.txt
+  exec startplasma-x11
 fi
 
 #exec i3
-exec awesome
 # exec spectrwm
 
