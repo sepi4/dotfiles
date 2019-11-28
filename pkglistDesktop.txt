@@ -10,7 +10,6 @@ bison
 bzip2
 chromium
 clipnotify
-code
 copyq
 coreutils
 cryptsetup
@@ -33,14 +32,17 @@ gcc-libs
 gettext
 git
 glibc
-gnome-keyring
+gnome-settings-daemon
 go
 go-tools
-google-chrome
 grep
 gvim
 gzip
 htop
+i3-gaps
+i3blocks
+i3lock
+i3status
 inetutils
 iproute2
 iputils
@@ -49,7 +51,6 @@ java-environment-common
 java-runtime-common
 jdk-openjdk
 jfsutils
-kde-applications-meta
 less
 lib32-nvidia-utils
 libtool
@@ -72,6 +73,7 @@ netctl
 network-manager-applet
 networkmanager
 npm
+ntp
 nvidia
 nvidia-utils
 openssh
@@ -84,7 +86,6 @@ pciutils
 pcmanfm
 perl
 pkgconf
-plasma-meta
 procps-ng
 psmisc
 pulseaudio
@@ -100,6 +101,7 @@ screen
 scrot
 sed
 shadow
+snapd
 spectrwm
 steam
 sudo
@@ -129,11 +131,13 @@ xclip
 xdotool
 xf86-video-vesa
 xfce4-artwork
-xfce4-settings
 xfce4-taskmanager
 xfce4-terminal
 xfsprogs
 xlockmore
+xmobar
+xmonad
+xmonad-contrib
 xorg-docs
 xorg-fonts-100dpi
 xorg-fonts-75dpi

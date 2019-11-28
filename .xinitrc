@@ -1,4 +1,4 @@
-#!/bin/sh
+g!/bin/sh
 
 [[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
 
@@ -29,7 +29,21 @@ if [[ "$(xrandr | grep VGA)" != "" ]]; then
   exec awesome
 else
   pacman -Qqe > pkglistDesktop.txt
-  exec startplasma-x11
+  setxkbmap -layout "us,fi" -option "grp:lwin_toggle"
+
+  exec awesome
+  
+  # exec xmonad
+
+  # exec i3
+
+  # exec startplasma-x11
+
+  # exec startlxde
+
+  # export XDG_SESSION_TYPE=x11
+  # export GDK_BACKEND=x11
+  # exec gnome-session
 fi
 
 #exec i3

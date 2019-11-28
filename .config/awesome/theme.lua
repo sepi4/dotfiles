@@ -16,7 +16,7 @@ local theme = {}
 -- theme.font          = "Terminus (TTF) 12"
 -- theme.font          = "Meslo LG S DZ 12"
 -- theme.font          = "Programma 14"
-theme.font          = "Ubuntu Mono 14"
+theme.font          = "Ubuntu Mono 15"
 
 theme.bg_normal     = "#0d001a"
 theme.bg_focus      = "#330066"
