@@ -10,13 +10,13 @@ filetype plugin on
 set pastetoggle=<F2>
 set autoread
 
-set tabstop=2
+set tabstop=4
 set expandtab
-set shiftwidth=2
+set shiftwidth=4
 set fileformats=unix
 set linespace=0
 set ignorecase smartcase
-set textwidth=78
+set textwidth=80
 set number
 set mouse=a
 set smartindent
