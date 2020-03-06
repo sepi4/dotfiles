@@ -1,0 +1,28 @@
+#!/bin/sh
+
+# dir=""
+# if [ $1 ]
+# then
+#     dir=$1
+# else
+#     echo "error: need input files directory"
+#     exit 1
+# fi
+
+videos=""
+for file in $PWD/*
+do
+    videos+="file '$file'\n"
+done
+echo -e $videos > /tmp/merge.txt
+
+# cat /tmp/merge.txt
+
+
+if [ $1 ]
+then
+    ffmpeg -f concat -safe 0 -i /tmp/merge.txt -c copy $1
+else
+    ffmpeg -f concat -safe 0 -i /tmp/merge.txt -c copy output.mp4
+fi
+
