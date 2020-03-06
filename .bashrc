@@ -50,3 +50,5 @@ export BROWSER=/usr/bin/chromium
 # export BROWSER=/usr/bin/firefox
 alias config='/usr/bin/git --git-dir=/home/sepi4/.cfg/ --work-tree=/home/sepi4'
 alias ea='nvim ~/.config/awesome/'
+export PATH=~/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/usr/sbin
+complete -cf sudo # for autocompletion
