@@ -1,6 +1,6 @@
 #!/bin/sh
 
-[[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
+[ -f ~/.Xresources ] && xrdb -merge ~/.Xresources
 setxkbmap -layout "us,fi" -option "grp:lwin_toggle"
 xinput disable 10 # off touchpad
 feh --bg-scale ~/Pictures/bg_image.jpg # background pictures
