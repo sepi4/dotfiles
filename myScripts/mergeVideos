@@ -25,4 +25,3 @@ then
 else
     ffmpeg -f concat -safe 0 -i /tmp/merge.txt -c copy output.mp4
 fi
-

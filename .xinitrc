@@ -4,7 +4,7 @@
 setxkbmap -layout "us,fi" -option "grp:lwin_toggle"
 xinput disable 10 # off touchpad
 feh --bg-scale ~/Pictures/bg_image.jpg # background pictures
-pacman -Qqe > pkglistLaptop.txt
+# pacman -Qqe > pkglistLaptop.txt
 exec awesome
 
 ## if thinkpad
