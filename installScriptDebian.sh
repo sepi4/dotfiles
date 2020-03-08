@@ -56,7 +56,7 @@ installApps()
         xorg git ranger firefox-esr htop net-tools awesome neovim copyq vlc \
         npm xterm zsh curl dwm suckless-tools chromium w3m telegram-desktop thunar \
         libx11-dev libxinerama-dev build-essential dkms network-manager-gnome \
-        linux-headers-$(uname -r) -yy
+        linux-headers-$(uname -r) zathura -yy
     
 }
 

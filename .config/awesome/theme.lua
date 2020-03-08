@@ -12,11 +12,12 @@ local themes_path = gfs.get_themes_dir()
 local theme = {}
 
 -- theme.font          = "sans 14"
--- theme.font          = "Liberation Sans 10"
+-- theme.font          = "Liberation Sans 12"
 -- theme.font          = "Terminus (TTF) 12"
--- theme.font          = "Meslo LG S DZ 12"
+theme.font          = "Meslo LG S DZ 12"
 -- theme.font          = "Programma 14"
-theme.font          = "Ubuntu Mono 15"
+-- theme.font          = "Ubuntu Mono 15"
+-- theme.font          = "FreeMono 12"
 
 theme.bg_normal     = "#0d001a"
 theme.bg_focus      = "#330066"
