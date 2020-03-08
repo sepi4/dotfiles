@@ -223,8 +223,7 @@ awful.screen.connect_for_each_screen(function(s)
       height = 19
     })
 
-    local battery_file = io.open('/sys/class/power_supply/BAT',"r")
-    battery_widget = battery_file and battery_widget or nil
+    local battery_file = io.open('/sys/class/power_supply/BAT0',"r")
 
     -- Add widgets to the wibox
     s.mywibox:setup {
@@ -242,8 +241,8 @@ awful.screen.connect_for_each_screen(function(s)
             wibox.widget.systray(),
             -- mytextclock,
             myCalendar,
-            battery_widget,
-            -- nil,
+            -- battery_widget,
+            battery_file and battery_widget or nil,
             s.mylayoutbox,
             munteksti,
         },
