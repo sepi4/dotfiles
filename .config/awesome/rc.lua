@@ -662,4 +662,6 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- clip manager
 awful.util.spawn("copyq")
 awful.util.spawn("nm-applet")
+-- awful.util.spawn("nm-tray")
 awful.util.spawn("blueman-applet")
+awful.util.spawn("volumeicon")
