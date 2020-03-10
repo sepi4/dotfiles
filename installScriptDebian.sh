@@ -80,6 +80,8 @@ installApps()
         network-manager-gnome \
         zathura \
         volumeicon-alsa \
+        scrot \
+        sxiv \
         thunar -yy
     
 }
