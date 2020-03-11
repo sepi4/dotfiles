@@ -82,6 +82,7 @@ installApps()
         volumeicon-alsa \
         scrot \
         sxiv \
+        pulseaudio \
         thunar -yy
     
 }
