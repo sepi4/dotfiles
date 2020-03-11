@@ -140,13 +140,26 @@ virtualBoxAppInstall() {
     sudo ~/Downloads/./VBoxLinuxAdditions.run
 }
 
+addDotfilesGit() {
+    echo ".cfg" >> .gitignore
+    git clone --bare https://github.com/sepi4/dotfiles.git $HOME/.cfg
 
-echo "NOW starts LONG INSTALL"
-sleep 2
+    mkdir -p .config-backup && \
+        config checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | \
+        xargs -I{} mv {} .config-backup/{}
 
+    config checkout
+    config config --local status.showUntrackedFiles no
+}
+
+
+
+echo "CHECKINGS"
 checkUserExists
 checkDotfilesNotExist
 virtualBox
+echo "NOW starts LONG INSTALL"
+sleep 2
 addNonFree
 installApps
 installVsCode
@@ -154,5 +167,6 @@ getDotfiles
 copyFromDotfiles
 addXinitrc
 virtualBoxAppInstall
+addDotfilesGit
 
 echo "FINISHED!!!! now reboot your system"
