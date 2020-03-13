@@ -62,12 +62,12 @@ installApps()
         curl \
         dwm \
         suckless-tools \
-        chromium \
-        w3m \
-        telegram-desktop \
         libx11-dev \
         libxinerama-dev \
         build-essential \
+        chromium \
+        w3m \
+        telegram-desktop \
         dkms \
         network-manager-gnome \
         zathura \
