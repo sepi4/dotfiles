@@ -660,8 +660,10 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 
 -- SEPI AUTOSTART
 -- clip manager
-awful.util.spawn("copyq")
 awful.util.spawn("nm-applet")
 -- awful.util.spawn("nm-tray")
 awful.util.spawn("blueman-applet")
-awful.util.spawn("volumeicon")
+awful.util.spawn("copyq")
+-- awful.util.spawn("volumeicon")
+-- awful.util.spawn("pnmixer")
+awful.util.spawn("pasystray")
