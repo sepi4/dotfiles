@@ -10,31 +10,34 @@ local gfs = require("gears.filesystem")
 local themes_path = gfs.get_themes_dir()
 
 local theme = {}
+theme.gap_single_client = false
+theme.fullscreen_hide_border = true
+theme.maximized_hide_border = true
 
 -- theme.font          = "sans 14"
 -- theme.font          = "Liberation Sans 12"
 -- theme.font          = "Terminus (TTF) 12"
-theme.font          = "Meslo LG S DZ 12"
+theme.font          = "Meslo LG S DZ 14"
 -- theme.font          = "Programma 14"
 -- theme.font          = "Ubuntu Mono 15"
 -- theme.font          = "FreeMono 12"
 
 theme.bg_normal     = "#0d001a"
-theme.bg_focus      = "#330066"
+theme.bg_focus      = "#057d05"
 theme.bg_urgent     = "#ff0000"
 theme.bg_minimize   = "#444444"
 theme.bg_systray    = theme.bg_normal
 
-theme.fg_normal     = "#aaaaaa"
+theme.fg_normal     = "#fafafe"
 theme.fg_focus      = "#ffffff"
 theme.fg_urgent     = "#ffffff"
 theme.fg_minimize   = "#ffffff"
 
-theme.useless_gap   = dpi(3)
-theme.border_width  = dpi(1)
+theme.useless_gap   = dpi(4)
+theme.border_width  = dpi(2)
 theme.border_normal = "#0d001a"
 -- theme.border_focus  = "#535d6c"
-theme.border_focus  = "#ff0000"
+theme.border_focus  = "#00ff00"
 theme.border_marked = "#91231c"
 
 -- There are other variable sets

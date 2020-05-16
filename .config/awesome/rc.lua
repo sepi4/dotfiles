@@ -62,6 +62,7 @@ end
 -- beautiful.init(gears.filesystem.get_themes_dir() .. "xresources/theme.lua")
 -- beautiful.init(gears.filesystem.get_themes_dir() .. "zenburn/theme.lua")
 beautiful.init("/home/sepi4/.config/awesome/theme.lua") 
+-- beautiful.gap_single_client = false
 -- This is used later as the default terminal and editor to run.
 terminal = "xterm"
 editor = os.getenv("EDITOR") or "nvim"
@@ -413,7 +414,7 @@ awful.key({ modkey, "Control"    }, "j",     function () awful.client.incwfact(-
               {description = "show the menubar", group = "launcher"}),
    
     awful.key({ modkey }, "p", 
-      function() awful.util.spawn('dmenu_run -fn "Terminus (TTF)-12" -nb "#0d001a" -sb "#330066"') end,
+      function() awful.util.spawn('dmenu_run -fn "meslo-14" -nb "#0d001a" -sb "#057d05" -nf "#ffffff"') end,
               {description = "dmenu", group = "launcher"})
 )
 
@@ -656,6 +657,20 @@ client.connect_signal("focus", function(c) c.border_color = beautiful.border_foc
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
 
+-- SEPI ADD
+-- from: https://stackoverflow.com/questions/30324250/how-to-hide-borders-dynamically-from-windows-when-not-tiled-awesome-wm
+screen.connect_signal("arrange", function (s)
+    local max = s.selected_tag.layout.name == "max"
+    local only_one = #s.tiled_clients == 1 -- use tiled_clients so that other floating windows don't affect the count
+    -- but iterate over clients instead of tiled_clients as tiled_clients doesn't include maximized windows
+    for _, c in pairs(s.clients) do
+        if (max or only_one) and not c.floating or c.maximized then
+            c.border_width = 0
+        else
+            c.border_width = beautiful.border_width
+        end
+    end
+end)
 
 
 -- SEPI AUTOSTART
@@ -664,4 +679,8 @@ awful.util.spawn("copyq")
 awful.util.spawn("nm-applet")
 -- awful.util.spawn("nm-tray")
 awful.util.spawn("blueman-applet")
+
+awful.util.spawn("pkill volumeicon") -- avoid multiple volumeicon on restart
 awful.util.spawn("volumeicon")
+
+-- awful.util.spawn("xfce4-panel")
