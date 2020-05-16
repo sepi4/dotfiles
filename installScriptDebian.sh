@@ -71,10 +71,11 @@ installApps()
         dkms \
         network-manager-gnome \
         zathura \
-        volumeicon-alsa \
         scrot \
         sxiv \
         pulseaudio \
+        pavucontrol \
+        pasystray \
         pcmanfm -yy
     
 }

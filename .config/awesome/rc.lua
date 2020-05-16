@@ -675,12 +675,10 @@ end)
 
 -- SEPI AUTOSTART
 -- clip manager
-awful.util.spawn("copyq")
 awful.util.spawn("nm-applet")
 -- awful.util.spawn("nm-tray")
 awful.util.spawn("blueman-applet")
-
 awful.util.spawn("pkill volumeicon") -- avoid multiple volumeicon on restart
 awful.util.spawn("volumeicon")
-
--- awful.util.spawn("xfce4-panel")
+awful.util.spawn("copyq")
+awful.util.spawn("pasystray")
