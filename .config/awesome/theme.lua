@@ -2,6 +2,8 @@
 -- Default awesome theme --
 ---------------------------
 
+
+
 local theme_assets = require("beautiful.theme_assets")
 local xresources = require("beautiful.xresources")
 local dpi = xresources.apply_dpi
@@ -14,16 +16,18 @@ theme.gap_single_client = false
 theme.fullscreen_hide_border = true
 theme.maximized_hide_border = true
 
+fontSize = 14
+
 -- theme.font          = "sans 14"
 -- theme.font          = "Liberation Sans 12"
 -- theme.font          = "Terminus (TTF) 12"
-theme.font          = "Meslo LG S DZ 14"
+theme.font          = "Meslo LG S DZ " .. fontSize
 -- theme.font          = "Programma 14"
 -- theme.font          = "Ubuntu Mono 15"
 -- theme.font          = "FreeMono 12"
 
 theme.bg_normal     = "#0d001a"
-theme.bg_focus      = "#057d05"
+theme.bg_focus      = "#0c71e0"
 theme.bg_urgent     = "#ff0000"
 theme.bg_minimize   = "#444444"
 theme.bg_systray    = theme.bg_normal
@@ -36,8 +40,8 @@ theme.fg_minimize   = "#ffffff"
 theme.useless_gap   = dpi(4)
 theme.border_width  = dpi(2)
 theme.border_normal = "#0d001a"
--- theme.border_focus  = "#535d6c"
-theme.border_focus  = "#00ff00"
+-- theme.border_focus  = "#00ff00"
+theme.border_focus  = "#ff3333"
 theme.border_marked = "#91231c"
 
 -- There are other variable sets
@@ -71,9 +75,10 @@ theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
 -- Variables set for theming the menu:
 -- menu_[bg|fg]_[normal|focus]
 -- menu_[border_color|border_width]
+
 theme.menu_submenu_icon = themes_path.."default/submenu.png"
 theme.menu_height = dpi(14)
-theme.menu_width  = dpi(100)
+theme.menu_width  = dpi(200)
 
 -- You can add as many variables as
 -- you wish and access them by using
@@ -107,7 +112,24 @@ theme.titlebar_maximized_button_focus_inactive  = themes_path.."default/titlebar
 theme.titlebar_maximized_button_normal_active = themes_path.."default/titlebar/maximized_normal_active.png"
 theme.titlebar_maximized_button_focus_active  = themes_path.."default/titlebar/maximized_focus_active.png"
 
-theme.wallpaper = "/home/sepi4/Pictures/bg_image.jpg"
+function get_background_image(dir)
+  popen_file = io.popen('ls -a ' .. dir)
+  arr = {}
+  for filename in popen_file:lines() do
+    if filename ~= '.' and filename ~= '..' then  
+      table.insert(arr, filename)
+    end
+  end
+
+  math.randomseed(os.time())
+  if #arr > 0 then
+    return dir .. arr[math.random(1, #arr)]
+  end
+end
+-- theme.wallpaper = "/home/sepi4/Pictures/bg_image.jpg"
+-- theme.wallpaper = "/home/sepi4/Pictures/red_background.jpg"
+theme.wallpaper = get_background_image('/home/sepi4/Pictures/backgrounds_awesome/')
+-- 
 
 -- You can use your own layout icons like this:
 theme.layout_fairh = themes_path.."default/layouts/fairhw.png"

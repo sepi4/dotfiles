@@ -58,7 +58,9 @@ function prompt
   #   export PS1="[\u@\h \W] \$(__git_ps1 '$NO_COLOUR($GREEN%s$NO_COLOUR)')$NO_COLOUR\$ "
   # fi
 
-  export PS1="$GREEN_BOLD[$BLUE_BOLD\u$RED_BOLD@$CYAN_BOLD\h $YELLOW_BOLD\W$GREEN_BOLD]\$(__git_ps1 '$NO_COLOUR($GREEN%s$NO_COLOUR)')$NO_COLOUR\$ "
+  export PS1="$GREEN_BOLD[$BLUE_BOLD\u$RED_BOLD@"
+  PS1+="$CYAN_BOLD\h $YELLOW_BOLD\W$GREEN_BOLD]"
+  PS1+="\$(__git_ps1 '$NO_COLOUR($GREEN%s$NO_COLOUR)')$NO_COLOUR\$ "
 
 
 }
@@ -66,10 +68,16 @@ prompt
 
 VISUAL=nvim; export VISUAL EDITOR=nvim; export EDITOR
 # export BROWSER=/usr/bin/chromium
-# export BROWSER=/usr/bin/google-chrome-stable
 export BROWSER=/usr/bin/firefox
 alias config='/usr/bin/git --git-dir=/home/sepi4/.cfg/ --work-tree=/home/sepi4'
 alias ea='nvim ~/.config/awesome/'
 export PATH=~/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/usr/sbin\
-:$HOME/myScripts
+:$HOME/myScripts:/var/lib/snapd/snap/bin
 complete -cf sudo # for autocompletion
+TERM=xterm-256color
+alias setclip="xclip -selection c"
+alias getclip="xclip -selection c -o"
+alias screen='TERM=xterm-256color screen'
+alias monitors='xrandr --output DP-1 --pos 0x-1080'
+
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'

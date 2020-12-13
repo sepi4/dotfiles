@@ -2,13 +2,27 @@
 
 [ -f ~/.Xresources ] && xrdb -merge ~/.Xresources
 xinput disable 10 # off touchpad
-# feh --bg-scale ~/Pictures/bg_image.jpg # background pictures
+xmodmap -e "keycode 135=Super_R"
+
 # pacman -Qqe > pkglistLaptop.txt
 
-setxkbmap -layout "us,fi" -option "grp:lwin_toggle"
+# setxkbmap -layout "us,fi,ru" -variant ',,phonetic' -option "grp:alt_caps_toggle"
+# setxkbmap -layout "us,fi" -option "grp:alt_shift_toggle"
+
+
+setxkbmap -layout "us,fi" -variant -option "grp:alt_caps_toggle"
 exec awesome
+
+GTK_IM_MODULE DEFAULT=xim
+QT_IM_MODULE  DEFAULT=xim
+
+# exec openbox
+
 # exec dwm
+
 # exec spectrwm
+
+# exec i3
 
 # exec qtile
 
@@ -68,6 +82,4 @@ exec awesome
 #  # export GDK_BACKEND=x11
 #  # exec gnome-session
 #fi
-
-# exec i3
 

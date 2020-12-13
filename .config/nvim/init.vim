@@ -1,9 +1,11 @@
 let mapleader = " "
+inoremap jk <esc>
 
 set guicursor+=n-v-c:blinkon0
 set nocompatible
 filetype on
 filetype plugin on
+let g:asmsyntax = 'nasm'
 
 
 "Better copy & paste
@@ -22,10 +24,6 @@ set mouse=a
 set smartindent
 set autoindent
 
-" augroup numbertoggle
-"   autocmd BufEnter,FocusGained,InsertLeave * setlocal relativenumber
-"   autocmd BufLeave,FocusLost,InsertEnter   * setlocal norelativenumber
-" augroup END
 
 if !has('nvim')
   set fileencoding=utf8
@@ -82,39 +80,54 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 
 Plug 'dense-analysis/ale' " eslint
 
-Plug 'tpope/vim-fugitive'
-
 Plug 'mattn/emmet-vim'
+
 Plug 'kien/ctrlp.vim'
 
-Plug 'tpope/vim-sensible'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
+" Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive' " for git
+Plug 'tpope/vim-repeat'
 
-Plug 'takac/vim-hardtime'
+" Plug 'prettier/vim-prettier', { 'do': 'npm install' }
+" Plug 'jiangmiao/auto-pairs'
 
-Plug 'prettier/vim-prettier', { 'do': 'npm install' }
-Plug 'ervandew/supertab'
-Plug 'jiangmiao/auto-pairs'
+" table mode
+Plug 'dhruvasagar/vim-table-mode'
 
-
-
+Plug 'vim-airline/vim-airline'
+" Plug 'itchyny/lightline.vim'
 
 " colorschemes
 Plug 'patstockwell/vim-monokai-tasty'
+Plug 'morhetz/gruvbox'
 Plug 'chriskempson/base16-vim'
 
+" colorization for programming languages
 Plug 'sheerun/vim-polyglot'
-Plug 'OmniSharp/omnisharp-vim'
+
+
+" Plug 'diepm/vim-rest-console'
+" Plug 'tomasiser/vim-code-dark'
+
 
 " Initialize plugin system
 call plug#end()
 
 let g:SuperTabDefaultCompletionType = "<c-n>"
 
-" ALE
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" FZF
+nnoremap <C-p> :FZF<CR>
+let g:fzf_layout = { 'down': '~40%' }
+autocmd! FileType fzf tnoremap <buffer> <esc> <c-c>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ALE
 " In ~/.vim/vimrc, or somewhere similar.
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
@@ -136,14 +149,10 @@ let g:prettier#config#semi="false"
 " " Don't use vim-prettier's auto-formatting
 let g:prettier#autoformat=0
 
-" " Run prettier async before saving
-" autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.json,*.graphql,*.md PrettierAsync
-" autocmd BufWritePre .babelrc,.eslintrc,.prettierrc PrettierAsync
-
 nnoremap <leader>py :PrettierAsync<cr>
 
-"-- FOLDING --
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
+"-- FOLDING --
 set foldmethod=syntax "syntax highlighting items specify folds
 " set foldcolumn=1 "defines 1 col at window left, to indicate folding
 let javaScript_fold=1 "activate folding by JS syntax
@@ -154,32 +163,42 @@ set foldlevelstart=99 "start file with all folds opened
 
 let NERDTreeWinSize = 20
 let NERDTreeShowHidden=1
-nnoremap <leader><tab> :NERDTreeToggle<cr>
+let NERDTreeQuitOnOpen=1
+nnoremap <silent> <leader><tab> :NERDTreeToggle<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
+" for CtrlP to ingnore files
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+let g:ctrlp_custom_ignore = {
+ \   'dir' : '\.git$\|build$\|bower_components\|node_modules\|dist\|target' ,
+ \  'file' : '\v\.(exe|dll|lib)$'
+ \ }
+let g:ctrlp_max_files=0
+let g:ctrlp_show_hidden = 1
 
-" let g:material_theme_style = 'darker'
-" colorscheme base16-material-darker
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" COLORSCHEME
 colorscheme sepi-material-2
+" colorscheme base16-material-darker
+" colorscheme dracula
 " colorscheme keltainen
-
-
+nnoremap <F9> :colorscheme vim-monokai-tasty<cr>
+nnoremap <F10> :colorscheme vihrea<cr>
+nnoremap <F11> :colorscheme keltainen<cr>
+nnoremap <F12> :colorscheme valkoinen<cr>
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" TERMINAL
+" nnoremap <leader>t :split term://bash<cr><C-w>J6<C-w>_
+tnoremap <esc> <C-\><C-n>
+" tnoremap jk <C-\><C-n>
+"""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <leader>ev :e $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
 
-" inoremap <esc> <nop>
-inoremap jk <esc>
-
 " let g:hardtime_default_on = 1
 let g:hardtime_ignore_buffer_patterns = [ "CustomPatt[ae]rn", "NERD.*" ]
 " let g:hardtime_maxcount = 2
-
-
-" terminal"""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <leader>t :split term://bash<cr><C-w>J6<C-w>_
-tnoremap <esc> <C-\><C-n>
-tnoremap jk <C-\><C-n>
 
 set showbreak=+++\
 
@@ -188,42 +207,31 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
-nnoremap <F9> :colorscheme vim-monokai-tasty<cr>
-nnoremap <F10> :colorscheme base16-gruvbox-dark-hard<cr>
-nnoremap <F11> :colorscheme keltainen<cr>
-nnoremap <F12> :colorscheme valkoinen<cr>
 
 nnoremap <silent> <esc> :nohlsearch<cr>
-
 
 " move selected lines
 vnoremap <C-j> :m '>+1<CR>gv=gv
 vnoremap <C-k> :m '<-2<CR>gv=gv
 
 " Automatically indent pasted lines
-" nnoremap p p=`]
-" nnoremap P P=`]
-nnoremap p ]p
-nnoremap <c-p> p
+nnoremap p p=`]
+nnoremap P P=`]
+" nnoremap p ]p
+" nnoremap <c-p> p
+
+
+
 
 " Re-select the last pasted text
 nnoremap gp `[v`]
 
-" Toggle wrapping with <Leader>w
-noremap <Leader>w :set wrap!<CR>
-nmap <Leader>a <Plug>(EasyAlign)
+" open current file in firefox
+noremap <Leader>of :silent !firefox %<cr>
+noremap <Leader>oc :silent !chromium %<cr>
 
-let g:OmniSharp_server_stdio = 1
+nmap <leader>]  <Plug>(coc-diagnostic-next-error)
+nmap <leader>[  <Plug>(coc-diagnostic-prev-error)
 
-let g:user_emmet_settings = {
-  \  'html': {
-  \      'block_all_childless' : 1,
-  \  },
-  \}
-
-
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
-let g:ctrlp_custom_ignore = {
- \   'dir' : '\.git$\|build$\|bower_components\|node_modules\|dist\|target' ,
- \  'file' : '\v\.(exe|dll|lib)$'
- \ }
+nmap ga <Plug>(EasyAlign)
+xmap ga <Plug>(EasyAlign)

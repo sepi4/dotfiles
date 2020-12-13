@@ -12,7 +12,6 @@ local awful = require("awful")
 --   kissa = string.upper(kissa)
 --   print(kissa)
 -- end
-local battery_widget = require("awesome-wm-widgets.battery-widget.battery")
 
 
 -- local lain = require("lain")
@@ -28,6 +27,8 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
+
+
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -65,6 +66,7 @@ beautiful.init("/home/sepi4/.config/awesome/theme.lua")
 -- beautiful.gap_single_client = false
 -- This is used later as the default terminal and editor to run.
 terminal = "xterm"
+-- terminal = "st"
 editor = os.getenv("EDITOR") or "nvim"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -73,7 +75,9 @@ editor_cmd = terminal .. " -e " .. editor
 -- If you do not like this or do not have such a key,
 -- I suggest you to remap Mod4 to another key using xmodmap or other tools.
 -- However, you can use another modifier like Mod1, but it may interact with others.
+
 modkey = "Mod1"
+-- modkey = "Mod4"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
@@ -86,7 +90,7 @@ awful.layout.layouts = {
     -- awful.layout.suit.fair.horizontal,
     -- awful.layout.suit.spiral,
     -- awful.layout.suit.spiral.dwindle,
-    -- awful.layout.suit.max,
+    awful.layout.suit.max,
     -- awful.layout.suit.max.fullscreen,
     -- awful.layout.suit.magnifier,
     -- awful.layout.suit.corner.nw,
@@ -123,7 +127,6 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- Keyboard map indicator and switcher
 mykeyboardlayout = awful.widget.keyboardlayout()
 
-myCalendar = awful.widget.watch('bash -c "date \'+ %a %d.%m %H:%M \'"', 60)
 
 -- {{{ Wibar
 -- Create a textclock widget
@@ -225,6 +228,17 @@ awful.screen.connect_for_each_screen(function(s)
     })
 
     local battery_file = io.open('/sys/class/power_supply/BAT0',"r")
+    -- file = io.open('/sys/class/power_supply/BAT0/capacity', 'r'):read()
+    -- capacity = file:read()
+    
+    -- bat = awful.widget.watch('bash -c "echo $(cat /sys/class/power_supply/BAT0/capacity)%"', 1)
+    --
+    -- myCalendar = awful.widget.watch('bash -c "date \'+ %a %d.%m %H:%M \'"', 1)
+
+    bat = awful.widget.watch('bash -c "/home/sepi4/awesome.sh"', 5)
+
+    -- bat = wibox.widget.textbox('kissa')
+
 
     -- Add widgets to the wibox
     s.mywibox:setup {
@@ -238,14 +252,14 @@ awful.screen.connect_for_each_screen(function(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            mykeyboardlayout,
             wibox.widget.systray(),
             -- mytextclock,
-            myCalendar,
-            -- battery_widget,
-            battery_file and battery_widget or nil,
+            -- myCalendar,
+            -- battery_file and bat or nil,
+            mykeyboardlayout,
+            require("awesome-wm-widgets.battery-widget.battery"),
+            -- wibox.widget.textbox(' <span color="red">kissa</span>'),
             s.mylayoutbox,
-            munteksti,
         },
     }
 end)
@@ -278,14 +292,15 @@ globalkeys = gears.table.join(
     awful.key({ }, 
               "Print", 
               function() 
-                awful.util.spawn("scrot '%Y-%m-%d_%H:%M:%S_$wx$h.png' -e 'mv $f ~/Pictures/screenshots/'") 
+                awful.util.spawn("scrot '%Y-%m-%d_%H:%M:%S_$wx$h.png' -e 'xclip -selection clipboard -t image/png -i $f && mv $f ~/Pictures/screenshots/'") 
               end,
               {description = "screenshot fullscreen", group = "screenshot"}
     ),
     awful.key({ modkey }, 
               "Print", 
               function() 
-                awful.util.spawn("scrot -s '%Y-%m-%d_%H:%M:%S_$wx$h.png' -e 'mv $f ~/Pictures/screenshots/'") 
+                -- awful.util.spawn("scrot -s '%Y-%m-%d_%H:%M:%S_$wx$h.png' -e 'mv $f ~/Pictures/screenshots/'") 
+                awful.util.spawn("scrot -s '%Y-%m-%d_%H:%M:%S_$wx$h.png' -e 'xclip -selection clipboard -t image/png -i $f && mv $f ~/Pictures/screenshots/'") 
               end,
               {description = "screenshot border", group = "screenshot"}
     ),
@@ -414,7 +429,7 @@ awful.key({ modkey, "Control"    }, "j",     function () awful.client.incwfact(-
               {description = "show the menubar", group = "launcher"}),
    
     awful.key({ modkey }, "p", 
-      function() awful.util.spawn('dmenu_run -fn "meslo-14" -nb "#0d001a" -sb "#057d05" -nf "#ffffff"') end,
+      function() awful.util.spawn('dmenu_run -fn "meslo-14" -nb "#0d001a" -sb "#0018cc" -nf "#ffffff"') end,
               {description = "dmenu", group = "launcher"})
 )
 
@@ -581,8 +596,9 @@ awful.rules.rules = {
     -- Set Firefox to always map on the tag named "2" on screen 1.
     -- { rule = { name = "Mozilla Firefox" },
     --   properties = { screen = 1, tag = "1" } },
-    { rule = { name = "Company Of Heroes 2" },
-      properties = { screen = 1, tag = "5" } },
+    --
+    -- { rule = { name = "Company Of Heroes 2" },
+    --   properties = { screen = 1, tag = "5" } },
 
     -- Add titlebars to normal clients and dialogs
     { rule_any = {type = { "normal", "dialog" }
@@ -675,10 +691,10 @@ end)
 
 -- SEPI AUTOSTART
 -- clip manager
+awful.util.spawn("pkill volumeicon") -- avoid multiple volumeicon on restart
 awful.util.spawn("nm-applet")
 -- awful.util.spawn("nm-tray")
 awful.util.spawn("blueman-applet")
-awful.util.spawn("pkill volumeicon") -- avoid multiple volumeicon on restart
-awful.util.spawn("volumeicon")
 awful.util.spawn("copyq")
 awful.util.spawn("pasystray")
+awful.util.spawn("volumeicon")
