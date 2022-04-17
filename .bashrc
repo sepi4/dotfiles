@@ -60,7 +60,7 @@ function prompt
 
   export PS1="$GREEN_BOLD[$BLUE_BOLD\u$RED_BOLD@"
   PS1+="$CYAN_BOLD\h $YELLOW_BOLD\W$GREEN_BOLD]"
-  PS1+="\$(__git_ps1 '$NO_COLOUR($GREEN%s$NO_COLOUR)')$NO_COLOUR\$ "
+  PS1+="\$(__git_ps1 '$NO_COLOUR($GREEN%s$NO_COLOUR)')$NO_COLOUR\n\$ "
 
 
 }
