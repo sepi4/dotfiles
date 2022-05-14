@@ -12,6 +12,7 @@ installApps()
         chromium-browser \
         neovim \
         htop \
+				chrome-gnome-shell \ # for extentions
         nemo -yy
 }
 vscode() {
