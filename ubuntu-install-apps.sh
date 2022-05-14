@@ -48,9 +48,18 @@ node() {
 	nvm install --lts
 }
 
-installApps
-vscode
-brave
+git() {
+	# git config --global user.email 'polser@gmail.com'
+	# git config --global user.name 'Sergei Polishsuk'
+	
+	# touch .gitignore
+	# echo '.vscode' > .gitignore
+	# git config --global core.excludesFile '~/.gitignore'
+}
+
+# installApps
+# vscode
+# brave
 # node
 
 # TODO bitwarden, dotfiles, FI, 
