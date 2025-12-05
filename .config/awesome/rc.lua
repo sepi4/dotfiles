@@ -28,6 +28,9 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
 
+-- SEPI -- NEED TO GET AWESOME WIDGETS REPO, AND INSTALL HORST3180/ARC-ICON-THEME ICONS
+local battery_widget = require("awesome-wm-widgets.battery-widget.battery")
+
 
 
 -- {{{ Error handling
@@ -65,8 +68,10 @@ end
 beautiful.init("/home/sepi4/.config/awesome/theme.lua") 
 -- beautiful.gap_single_client = false
 -- This is used later as the default terminal and editor to run.
-terminal = "xterm"
--- terminal = "st"
+-- terminal = "xterm"
+-- terminal = "kitty"
+-- terminal = "alacritty"
+terminal = "wezterm"
 editor = os.getenv("EDITOR") or "nvim"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -255,9 +260,10 @@ awful.screen.connect_for_each_screen(function(s)
             wibox.widget.systray(),
             -- mytextclock,
             -- myCalendar,
-            -- battery_file and bat or nil,
+            battery_file and bat or nil,
             mykeyboardlayout,
-            require("awesome-wm-widgets.battery-widget.battery"),
+            battery_widget(),
+            -- require("awesome-wm-widgets.battery-widget.battery"),
             -- wibox.widget.textbox(' <span color="red">kissa</span>'),
             s.mylayoutbox,
         },
@@ -278,7 +284,8 @@ root.buttons(gears.table.join(
 -- {{{ Key bindings
 globalkeys = gears.table.join(
 
-    -- SEPI HOTKEYS
+    -- SEPI HOTKEYS katso
+
     awful.key({}, "XF86AudioMute", function() os.execute("pamixer -t") end),
     awful.key({}, "XF86AudioRaiseVolume", function() os.execute("pamixer -i 5") end),
     awful.key({}, "XF86AudioLowerVolume", function() os.execute("pamixer -d 5") end),
@@ -690,11 +697,10 @@ end)
 
 
 -- SEPI AUTOSTART
--- clip manager
 awful.util.spawn("pkill volumeicon") -- avoid multiple volumeicon on restart
-awful.util.spawn("nm-applet")
--- awful.util.spawn("nm-tray")
-awful.util.spawn("blueman-applet")
-awful.util.spawn("copyq")
-awful.util.spawn("pasystray")
-awful.util.spawn("volumeicon")
+awful.util.spawn("nm-applet") -- network -- sudo apt install network-manager-applet
+awful.util.spawn("blueman-applet") -- bluetooth -- sudo apt install blueman
+awful.util.spawn("copyq") -- clip manager 
+-- awful.util.spawn("pasystray")
+awful.util.spawn("volumeicon") -- just volume icon -- sudo apt install volumeicon-alsa
+awful.spawn.with_shell("setxkbmap -option grp:win_space_toggle us,fi") -- keyboard layouts toggle

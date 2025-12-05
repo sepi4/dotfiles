@@ -2,8 +2,6 @@
 -- Default awesome theme --
 ---------------------------
 
-
-
 local theme_assets = require("beautiful.theme_assets")
 local xresources = require("beautiful.xresources")
 local dpi = xresources.apply_dpi
@@ -18,15 +16,17 @@ theme.maximized_hide_border = true
 
 fontSize = 14
 
--- theme.font          = "sans 14"
--- theme.font          = "Liberation Sans 12"
--- theme.font          = "Terminus (TTF) 12"
-theme.font          = "Meslo LG S DZ " .. fontSize
--- theme.font          = "Programma 14"
--- theme.font          = "Ubuntu Mono 15"
--- theme.font          = "FreeMono 12"
+-- theme.font          = "monospace " .. fontSize
+-- theme.font          = "sans " .. fontSize
+-- theme.font          = "Liberation Sans " .. fontSize
+theme.font          = "Terminus (TTF) " .. fontSize
+-- theme.font          = "Meslo LG S DZ " .. fontSize
+-- theme.font          = "Programma " .. fontSize
+-- theme.font          = "Ubuntu Mono " .. fontSize
+-- theme.font          = "FreeMono " .. fontSize
 
 theme.bg_normal     = "#0d001a"
+-- theme.bg_normal   = "#444444"
 theme.bg_focus      = "#0c71e0"
 theme.bg_urgent     = "#ff0000"
 theme.bg_minimize   = "#444444"
