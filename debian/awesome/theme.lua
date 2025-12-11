@@ -16,10 +16,10 @@ theme.maximized_hide_border = true
 
 fontSize = 14
 
--- theme.font          = "monospace " .. fontSize
+theme.font          = "monospace " .. fontSize
 -- theme.font          = "sans " .. fontSize
 -- theme.font          = "Liberation Sans " .. fontSize
-theme.font          = "Terminus (TTF) " .. fontSize
+-- theme.font          = "Terminus (TTF) " .. fontSize
 -- theme.font          = "Meslo LG S DZ " .. fontSize
 -- theme.font          = "Programma " .. fontSize
 -- theme.font          = "Ubuntu Mono " .. fontSize
