@@ -1,0 +1,5 @@
+return {
+  {
+    "slugbyte/lackluster.nvim",
+  },
+}

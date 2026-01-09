@@ -28,7 +28,7 @@ do
     pro=`echo "scale=2;$energy_now/$energy_full" | bc`
     pro="${pro:1}"
 
-    net=`iw dev wlp3s0 link | awk '/SSID/{print $2}'`
+    net=`iw dev wlan0 link | awk '/SSID/{print $2}'`
     xsetroot -name " ${net} | ${pro}% ${bat} ${sign}${power_now_watts}W | ${date}"
   fi
 

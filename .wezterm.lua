@@ -1,5 +1,5 @@
 -- Pull in the wezterm API
-local wezterm = require 'wezterm'
+local wezterm = require("wezterm")
 
 -- This will hold the configuration.
 local config = wezterm.config_builder()
@@ -11,8 +11,8 @@ local config = wezterm.config_builder()
 -- config.initial_rows = 28
 
 -- or, changing the font size and color scheme.
-config.font_size = 10
--- 
+config.font_size = 13
+--
 config.enable_tab_bar = true
 config.hide_tab_bar_if_only_one_tab = true
 config.warn_about_missing_glyphs = false
