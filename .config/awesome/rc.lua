@@ -686,11 +686,16 @@ end)
 
 -- SEPI AUTOSTART
 
-awful.util.spawn("pkill pasystray")                                    -- avoid duplication
+awful.util.spawn("pkill pasystray") -- avoid duplication
 
-awful.util.spawn("nm-applet")                                          -- networkmanager
-awful.util.spawn("blueman-applet")                                     -- blueman
-awful.util.spawn("copyq")                                              -- copyq
-awful.util.spawn("pasystray")                                          -- pasystray
+-- what to install with pacman:
+awful.util.spawn("nm-applet")      -- networkmanager, network-manager-applet (wifi)
+awful.util.spawn("blueman-applet") -- blueman (bluetooth)
+awful.util.spawn("copyq")          -- copyq
+awful.util.spawn("pasystray")      -- pasystray (volume)
+-- also:
+-- - noto-fonts (nice fonts using in awesome wm)
+-- - lxappearance (to change themes of thunar, pcmanfm...)
+-- - scrot, xclip (screenshots, nvim global clipboard)
 
 awful.spawn.with_shell("setxkbmap -option grp:win_space_toggle us,fi") -- keyboard layouts toggle
