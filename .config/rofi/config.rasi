@@ -1,1 +1,3 @@
-@theme "/usr/share/rofi/themes/glue_pro_blue.rasi"
+//@theme "/usr/share/rofi/themes/glue_pro_blue.rasi"
+
+@theme "/nix/store/7v2n1d4ikj13qarw1svavgzphrb1ah04-rofi-2.0.0/share/rofi/themes/glue_pro_blue.rasi"

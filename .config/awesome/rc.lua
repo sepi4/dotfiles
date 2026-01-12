@@ -686,13 +686,26 @@ end)
 
 -- SEPI AUTOSTART
 
-awful.util.spawn("pkill pasystray") -- avoid duplication
+-- awful.util.spawn("pkill pasystray") -- pasystray (volume)
 
 -- what to install with pacman:
 awful.util.spawn("nm-applet")      -- networkmanager, network-manager-applet (wifi)
 awful.util.spawn("blueman-applet") -- blueman (bluetooth)
 awful.util.spawn("copyq")          -- copyq
-awful.util.spawn("pasystray")      -- pasystray (volume)
+-- awful.spawn.easy_async("pkill volumeicon; sleep 1", function()  -- avoid duplication with callback
+-- 	awful.util.spawn("volumeicon")     -- volumeicon
+-- end)
+
+awful.spawn.easy_async_with_shell("pkill volumeicon; sleep 2", function()
+	awful.spawn("volumeicon")     -- volumeicon
+end)
+
+-- awful.spawn.with_line_callback("pkill volumeicon", {
+-- 	function()  -- avoid duplication with callback
+-- 		awful.util.spawn("volumeicon")     -- volumeicon
+-- 	end
+-- })
+
 -- also:
 -- - noto-fonts (nice fonts using in awesome wm)
 -- - lxappearance (to change themes of thunar, pcmanfm...)
