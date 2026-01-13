@@ -81,8 +81,9 @@ local modkey = "Mod1" -- Alt
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
 	awful.layout.suit.tile,
+	awful.layout.suit.max,
 	awful.layout.suit.floating,
-	awful.layout.suit.max.fullscreen,
+	-- awful.layout.suit.max.fullscreen,
 	-- awful.layout.suit.tile.left,
 	-- awful.layout.suit.tile.bottom,
 	-- awful.layout.suit.tile.top,
@@ -90,7 +91,6 @@ awful.layout.layouts = {
 	-- awful.layout.suit.fair.horizontal,
 	-- awful.layout.suit.spiral,
 	-- awful.layout.suit.spiral.dwindle,
-	-- awful.layout.suit.max,
 	-- awful.layout.suit.magnifier,
 	-- awful.layout.suit.corner.nw,
 	-- awful.layout.suit.corner.ne,
@@ -697,7 +697,7 @@ awful.util.spawn("copyq")          -- copyq
 -- end)
 
 awful.spawn.easy_async_with_shell("pkill volumeicon; sleep 2", function()
-	awful.spawn("volumeicon")     -- volumeicon
+	awful.spawn("volumeicon") -- volumeicon
 end)
 
 -- awful.spawn.with_line_callback("pkill volumeicon", {
