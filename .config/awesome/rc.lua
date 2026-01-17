@@ -109,7 +109,7 @@ local myawesomemenu = {
 		end,
 	},
 	{ "edit config", editor_cmd .. " " .. awesome.conffile },
-	{ "restart",     awesome.restart },
+	{ "restart", awesome.restart },
 	{
 		"quit",
 		function()
@@ -251,7 +251,7 @@ awful.screen.connect_for_each_screen(function(s)
 			s.mypromptbox,
 		},
 		s.mytasklist, -- Middle widget
-		{           -- Right widgets
+		{ -- Right widgets
 			layout = wibox.layout.fixed.horizontal,
 			wibox.widget.systray(),
 			bat or nil,
@@ -275,13 +275,13 @@ root.buttons(gears.table.join(
 -- {{{ KEY BINDINGS
 local globalkeys = gears.table.join(
 
--- SEPI HOTKEYS
--- awful.key({
--- 	key = "XF86AudioMute",
--- 	on_press = function()
--- 		os.execute("pamixer -t")
--- 	end,
--- }),
+	-- SEPI HOTKEYS
+	-- awful.key({
+	-- 	key = "XF86AudioMute",
+	-- 	on_press = function()
+	-- 		os.execute("pamixer -t")
+	-- 	end,
+	-- }),
 	awful.key({}, "XF86AudioMute", function()
 		os.execute("pamixer -t")
 	end),
@@ -588,7 +588,7 @@ awful.rules.rules = {
 			role = {
 				"AlarmWindow", -- Thunderbird's calendar.
 				"ConfigManager", -- Thunderbird's about:config.
-				"pop-up",    -- e.g. Google Chrome's (detached) Developer Tools.
+				"pop-up", -- e.g. Google Chrome's (detached) Developer Tools.
 			},
 		},
 		properties = { floating = true },
@@ -685,30 +685,4 @@ screen.connect_signal("arrange", function(s)
 end)
 
 -- SEPI AUTOSTART
-
--- awful.util.spawn("pkill pasystray") -- pasystray (volume)
-
--- what to install with pacman:
-awful.util.spawn("nm-applet")      -- networkmanager, network-manager-applet (wifi)
-awful.util.spawn("blueman-applet") -- blueman (bluetooth)
-awful.util.spawn("copyq")          -- copyq
--- awful.spawn.easy_async("pkill volumeicon; sleep 1", function()  -- avoid duplication with callback
--- 	awful.util.spawn("volumeicon")     -- volumeicon
--- end)
-
-awful.spawn.easy_async_with_shell("pkill volumeicon; sleep 2", function()
-	awful.spawn("volumeicon") -- volumeicon
-end)
-
--- awful.spawn.with_line_callback("pkill volumeicon", {
--- 	function()  -- avoid duplication with callback
--- 		awful.util.spawn("volumeicon")     -- volumeicon
--- 	end
--- })
-
--- also:
--- - noto-fonts (nice fonts using in awesome wm)
--- - lxappearance (to change themes of thunar, pcmanfm...)
--- - scrot, xclip (screenshots, nvim global clipboard)
-
-awful.spawn.with_shell("setxkbmap -option grp:win_space_toggle us,fi") -- keyboard layouts toggle
+awful.spawn.with_shell("~/.config/awesome/autostart.sh")

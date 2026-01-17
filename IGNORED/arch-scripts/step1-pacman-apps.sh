@@ -15,6 +15,7 @@ apps=(
   "stow" # dotfiles linker
   "yazi" # file manager
   "zsh"
+  "tmux"
 
   # for neovim
   "neovim"
