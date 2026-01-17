@@ -109,7 +109,7 @@ local myawesomemenu = {
 		end,
 	},
 	{ "edit config", editor_cmd .. " " .. awesome.conffile },
-	{ "restart", awesome.restart },
+	{ "restart",     awesome.restart },
 	{
 		"quit",
 		function()
@@ -251,7 +251,7 @@ awful.screen.connect_for_each_screen(function(s)
 			s.mypromptbox,
 		},
 		s.mytasklist, -- Middle widget
-		{ -- Right widgets
+		{           -- Right widgets
 			layout = wibox.layout.fixed.horizontal,
 			wibox.widget.systray(),
 			bat or nil,
@@ -275,13 +275,13 @@ root.buttons(gears.table.join(
 -- {{{ KEY BINDINGS
 local globalkeys = gears.table.join(
 
-	-- SEPI HOTKEYS
-	-- awful.key({
-	-- 	key = "XF86AudioMute",
-	-- 	on_press = function()
-	-- 		os.execute("pamixer -t")
-	-- 	end,
-	-- }),
+-- SEPI HOTKEYS
+-- awful.key({
+-- 	key = "XF86AudioMute",
+-- 	on_press = function()
+-- 		os.execute("pamixer -t")
+-- 	end,
+-- }),
 	awful.key({}, "XF86AudioMute", function()
 		os.execute("pamixer -t")
 	end),
@@ -588,7 +588,7 @@ awful.rules.rules = {
 			role = {
 				"AlarmWindow", -- Thunderbird's calendar.
 				"ConfigManager", -- Thunderbird's about:config.
-				"pop-up", -- e.g. Google Chrome's (detached) Developer Tools.
+				"pop-up",    -- e.g. Google Chrome's (detached) Developer Tools.
 			},
 		},
 		properties = { floating = true },

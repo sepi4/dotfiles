@@ -17,6 +17,7 @@
 - https://docs.voidlinux.org/config/network/networkmanager.html
 - in terminal can use `nmcli`
 - https://wiki.archlinux.org/title/NetworkManager
+- install `polkit` for normal user to have access to wifi changes
 
 ### Bluetooth
 - just install `bluez` and enable the `bluetoothd` and `dbus` services

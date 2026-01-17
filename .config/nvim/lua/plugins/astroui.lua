@@ -12,7 +12,7 @@ return {
   opts = {
     -- change colorscheme
     -- colorscheme = "astrodark",
-    -- colorscheme = "vscode",
+    colorscheme = "vscode",
     -- colorscheme = "tokyonight-night",
     -- colorscheme = "overtones",
     -- colorscheme = "darcula",
@@ -21,7 +21,7 @@ return {
     -- colorscheme = "lackluster-night",
     -- colorscheme = "sepi-material-2",
     -- colorscheme = "kanagawabones",
-    colorscheme = "default",
+    -- colorscheme = "default",
     -- colorscheme = "neosolarized",
     -- colorscheme = "solarized-osaka",
     -- color
