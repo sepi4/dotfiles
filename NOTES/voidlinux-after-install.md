@@ -34,3 +34,4 @@
 
 ### Laptop
 - for better laptop battery use `tlp` service
+- https://linrunner.de/tlp/support/optimizing.html
