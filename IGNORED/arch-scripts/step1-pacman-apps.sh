@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # PACMAN APPS ----------------------------
 apps=(
   "awesome"
