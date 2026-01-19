@@ -125,9 +125,8 @@ end
 
 -- theme.wallpaper = "/home/sepi4/Pictures/bg_image.jpg"
 -- theme.wallpaper = "/home/sepi4/Pictures/red_background.jpg"
--- theme.wallpaper = get_background_image('/home/sepi4/Pictures/awesome/')
-theme.wallpaper = get_background_image("~/.config/awesome/wallpapers/")
---
+-- theme.wallpaper = get_background_image("~/.config/awesome/wallpapers/")
+theme.wallpaper = get_background_image("~/Pictures/wallpapers/")
 
 -- You can use your own layout icons like this:
 theme.layout_fairh = themes_path .. "default/layouts/fairhw.png"
