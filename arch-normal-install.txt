@@ -1,0 +1,19 @@
+extra things:
+
+- install extras in pacstrap
+    - grub, efibootimg (for grub with efi), networkmanager, neovim, vim
+
+- add user after passwd:
+    - useradd -m -G wheel -s /bin/bash sepi4
+    - pass to user
+
+- allow wheel
+    - in visudo uncomment: %wheel ALL=(ALL:ALL) ALL
+
+- enable networkmanager
+    - systemctl enable NetworkManager
+
+- setup grub
+    - grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
+    - grub-mkconfig -o /boot/grub/grub.cfg
+
