@@ -2,15 +2,14 @@
 
 # PACMAN APPS ----------------------------
 apps=(
-  "awesome"
   "firefox"
   "flameshot" # screenshots with drawing
   "thunar"
   "telegram-desktop"
 
   # terminal apps
-  "alacritty"
   "wezterm"
+  "alacritty"
   "curl"
   "fastfetch"
   "git"
@@ -18,6 +17,8 @@ apps=(
   "yazi" # file manager
   "zsh"
   "tmux"
+  "htop"
+  "btop"
 
   # for neovim
   "neovim"
@@ -28,21 +29,31 @@ apps=(
   "gdu"
   "xclip" # global clipboard
 
+  # sys
+  "networkmanager" # internet
+  "pipewire-pulse" # audio
+  "pipewire-alsa"
+  "bluez"  # bluetooth (bluetooth.service need to be enabled)
+  "bluez-utils"
+  "blueman"
+
   # dev_apps
   "base-devel"
   "go"
 
   # awesome wm apps
-  "blueman" # bluetooth
+  "awesome"
   "copyq" # clipboard 
-  "network-manager-applet" # wifi
-  "networkmanager"
-  "pasystray" # volumeicon alternative
-  "pamixer" # thinkpad awesome wm volume buttons control
   "lxappearance" # for change gui apps to dark theme
+  "papirus-icon-theme" # nice icon gui apps
+  "network-manager-applet" # for wifi icon
   "noto-fonts" # nice fonts
+  "pamixer" # thinkpad awesome wm volume buttons control
+  "pasystray" # volumeicon alternative
   "rofi"
   "scrot" # screenshots in awesome wm
+  "xorg"
+  "xorg-xinit"
 )
 
 sudo pacman -S "${apps[@]}"

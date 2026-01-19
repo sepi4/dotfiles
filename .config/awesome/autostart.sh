@@ -10,8 +10,8 @@ function run {
 run nm-applet # networkmanager, network-manager-applet (wifi)
 run copyq # copyq
 run blueman-applet # blueman (bluetooth)
-run volumeicon # for voidlinux
-# run pasystray # for archlinux (volumeicon not working)
+# run volumeicon # for voidlinux
+run pasystray # for archlinux (volumeicon not working)
 
 setxkbmap -option grp:win_space_toggle us,fi
 
