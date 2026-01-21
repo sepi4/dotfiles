@@ -33,9 +33,6 @@ apps=(
   "networkmanager" # internet
   "pipewire-pulse" # audio
   "pipewire-alsa"
-  "bluez"  # bluetooth (bluetooth.service need to be enabled)
-  "bluez-utils"
-  "blueman"
 
   # dev_apps
   "base-devel"
