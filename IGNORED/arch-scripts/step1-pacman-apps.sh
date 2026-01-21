@@ -56,4 +56,8 @@ apps=(
   "xorg-xinit"
 )
 
-sudo pacman -S "${apps[@]}"
+# check that all exist in arch repo
+pacman -Sp "${apps[@]}" || exit 1;
+echo "ALL PACKAGES EXIST. Continue installation!"
+
+sudo pacman -S --needed "${apps[@]}"
