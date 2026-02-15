@@ -10,6 +10,8 @@ return {
   { import = "astrocommunity.pack.lua" },
   { import = "astrocommunity.pack.go" },
   { import = "astrocommunity.pack.typescript" },
+  { import = "astrocommunity.pack.java" },
+  -- { import = "astrocommunity.pack.rust" },
   -- import/override with your plugins folder
   { import = "astrocommunity.colorscheme" },
   -- { import = "astrocommunity.pack.dart" },

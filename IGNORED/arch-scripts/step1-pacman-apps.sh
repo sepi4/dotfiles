@@ -19,6 +19,7 @@ apps=(
   "tmux"
   "htop"
   "btop"
+  "fzf" # fizzy finder
 
   # for neovim
   "neovim"

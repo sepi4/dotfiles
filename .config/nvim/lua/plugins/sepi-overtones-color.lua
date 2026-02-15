@@ -1,5 +1,0 @@
-return {
-  {
-    "ericdwhite/overtones.nvim",
-  },
-}

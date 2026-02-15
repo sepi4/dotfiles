@@ -1,5 +1,0 @@
-return {
-  {
-    "robertmeta/nofrils",
-  },
-}

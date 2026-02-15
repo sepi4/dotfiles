@@ -1,5 +1,0 @@
-return {
-  {
-    "slugbyte/lackluster.nvim",
-  },
-}

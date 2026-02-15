@@ -113,3 +113,7 @@ if ! shopt -oq posix; then
 fi
 
 source ~/.shell_common
+. "$HOME/.cargo/env"
+
+# Set up fzf key bindings and fuzzy completion
+eval "$(fzf --bash)"

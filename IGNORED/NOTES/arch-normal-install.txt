@@ -1,7 +1,7 @@
 extra things:
 
 - install extras in pacstrap
-    - grub, efibootimg (for grub with efi), networkmanager, neovim, vim
+    - base-devel, grub, efibootmgr (for grub with efi), networkmanager, neovim, vim
 
 - add user after passwd:
     - useradd -m -G wheel -s /bin/bash sepi4
