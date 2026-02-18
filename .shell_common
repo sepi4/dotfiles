@@ -22,6 +22,10 @@ alias nvim-kickstart='NVIM_APPNAME="nvim-kickstart" nvim'
 
 # battery check alias
 alias bat-check='upower -i /org/freedesktop/UPower/devices/battery_BAT0'
+
+alias update='sudo apt update && sudo apt upgrade'
+alias vox='voxtype'
+
 export PATH="$PATH:$HOME/go/bin"
 
 
@@ -29,3 +33,9 @@ export PATH="$PATH:$HOME/go/bin"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# PYENV for Python virtual environments.
+export PATH="$HOME/.pyenv/bin:$HOME/.pyenv/bin:$PATH"
+eval "$(pyenv init --path)"
+eval "$(pyenv virtualenv-init -)"
+

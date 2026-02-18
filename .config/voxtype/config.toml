@@ -57,6 +57,9 @@ enabled = true
 # Volume level (0.0 to 1.0)
 # volume = 0.7
 
+[meeting]
+enabled = true
+
 [whisper]
 # Transcription backend: "local" or "remote"
 # - local: Use whisper.cpp locally (default)
@@ -70,6 +73,7 @@ enabled = true
 # Or provide absolute path to a custom .bin model file
 # model = "base" # SEPI
 model = "large-v3-turbo"
+# model = "large-v3"
 
 # Language for transcription
 # Options:
@@ -81,7 +85,7 @@ model = "large-v3-turbo"
 # See: https://github.com/openai/whisper#available-models-and-languages
 
 # language = "en" # SEPI
-language = ["en", "ru", "fi"] # SEPI
+language = ["en", "fi", "ru"] # SEPI
 # language = "auto" # SEPI
 
 # Translate non-English speech to English
@@ -138,7 +142,7 @@ mode = "clipboard" # SEPI
 # Fall back to clipboard if typing fails
 fallback_to_clipboard = true
 # post_output_command = "ydotool key 29:1 47:1 47:0 29:0"
-post_output_command = "ydotool key ctrl+v"
+post_output_command = "ydotool key ctrl+shift+v" # SEPI
 
 # Custom driver order for type mode (optional)
 # Default order: wtype -> dotool -> ydotool -> clipboard

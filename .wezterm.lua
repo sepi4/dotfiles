@@ -4,19 +4,31 @@ local wezterm = require("wezterm")
 -- This will hold the configuration.
 local config = wezterm.config_builder()
 
--- This is where you actually apply your config choices.
-
--- -- For example, changing the initial geometry for new windows:
--- config.initial_cols = 120
--- config.initial_rows = 28
-
 -- or, changing the font size and color scheme.
 config.font_size = 13
-config.harfbuzz_features = { "calt = 0", "clig = 0", "liga = 0" }
---
+config.harfbuzz_features = { "calt = 0", "clig = 0", "liga = 0" } -- Remove annoying special characters in coding.
+
 config.enable_tab_bar = true
 config.hide_tab_bar_if_only_one_tab = true
 config.warn_about_missing_glyphs = false
+
+config.window_frame = {
+	border_left_width = "0.1cell",
+	border_right_width = "0.1cell",
+	border_bottom_height = "0.05cell",
+	-- border_top_height = "0.05cell",
+	border_left_color = "gray",
+	border_right_color = "gray",
+	border_bottom_color = "gray",
+	-- border_top_color = "gray",
+}
+
+-- config.window_padding = { -- remove pannings around
+-- 	left = 2,
+-- 	right = 2,
+-- 	top = 0,
+-- 	bottom = 0,
+-- }
 
 -- Finally, return the configuration to wezterm:
 return config
