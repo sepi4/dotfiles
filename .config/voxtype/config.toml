@@ -98,6 +98,7 @@ translate = false
 # Use this to hint at terminology, proper nouns, or formatting conventions.
 # Example: "Technical discussion about Rust, TypeScript, and Kubernetes."
 # initial_prompt = ""
+initial_prompt = "English transcription." # SEPI this is for 'en' detection issue
 
 # --- Multi-model settings ---
 #
