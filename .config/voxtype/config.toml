@@ -144,7 +144,8 @@ mode = "clipboard" # SEPI
 fallback_to_clipboard = true
 # post_output_command = "ydotool key 29:1 47:1 47:0 29:0"
 # post_output_command = "ydotool key ctrl+v" # SEPI
-post_output_command = "ydotool key ctrl+shift+v" # SEPI
+# post_output_command = "ydotool key ctrl+shift+v" # SEPI
+post_output_command = "~/.config/voxtype/smart-paste.sh" # SEPI smart paste
 
 # Custom driver order for type mode (optional)
 # Default order: wtype -> dotool -> ydotool -> clipboard
@@ -156,7 +157,8 @@ post_output_command = "ydotool key ctrl+shift+v" # SEPI
 #   driver_order = ["ydotool"]
 # driver_order = ["clipboard", "ydotool", "wtype", "dotool"] # SEPI
 # driver_order = ["wtype", "dotool", "ydotool", "clipboard"] # SEPI
-driver_order = ["clipboard", "ydotool", "wtype", "dotool"]
+# driver_order = ["clipboard", "ydotool", "wtype", "dotool"]
+driver_order = ["wtype", "dotool", "ydotool", "clipboard"]
 
 # Delay between typed characters in milliseconds
 # 0 = fastest possible, increase if characters are dropped
