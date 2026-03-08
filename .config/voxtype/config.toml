@@ -143,6 +143,7 @@ mode = "clipboard" # SEPI
 # Fall back to clipboard if typing fails
 fallback_to_clipboard = true
 # post_output_command = "ydotool key 29:1 47:1 47:0 29:0"
+# post_output_command = "ydotool key ctrl+v" # SEPI
 post_output_command = "ydotool key ctrl+shift+v" # SEPI
 
 # Custom driver order for type mode (optional)

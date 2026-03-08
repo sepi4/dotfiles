@@ -27,6 +27,7 @@ alias update='sudo apt update && sudo apt upgrade'
 alias vox='voxtype'
 
 export PATH="$PATH:$HOME/go/bin"
+export PATH="$PATH:$HOME/.local/bin"
 
 
 # NODE VERSIONS
