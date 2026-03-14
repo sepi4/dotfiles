@@ -25,9 +25,12 @@ alias bat-check='upower -i /org/freedesktop/UPower/devices/battery_BAT0'
 
 alias update='sudo apt update && sudo apt upgrade'
 alias vox='voxtype'
+alias coh2='kmonad ~/dotfiles/IGNORED/coh2/coh2-keys.kbd'
 
 export PATH="$PATH:$HOME/go/bin"
 export PATH="$PATH:$HOME/.local/bin"
+# opencode
+export PATH=/home/sepi4/.opencode/bin:$PATH
 
 
 # NODE VERSIONS

@@ -5,7 +5,7 @@ local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 
 -- or, changing the font size and color scheme.
-config.font_size = 13
+config.font_size = 11
 config.harfbuzz_features = { "calt = 0", "clig = 0", "liga = 0" } -- Remove annoying special characters in coding.
 
 -- config.enable_tab_bar = true
@@ -26,7 +26,7 @@ config.window_frame = {
 -- config.window_decorations = "NONE"  -- remove the ugly title bar
 config.enable_tab_bar = false -- if you don't need tabs
 config.window_padding = { left = 8, right = 8, top = 8, bottom = 8 }
-config.front_end = "WebGpu"   -- better rendering on some setups
+config.front_end = "WebGpu" -- better rendering on some setups
 
 config.enable_scroll_bar = true
 
