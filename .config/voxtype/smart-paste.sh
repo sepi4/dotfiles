@@ -3,7 +3,7 @@
 window_class=$(kdotool getactivewindow getwindowclassname 2>/dev/null)
 
 case "$window_class" in
-  *terminal*|*konsole*|*wezterm*|*alacritty*|*kitty*|*foot*|*gnome-terminal*|*xterm*)
+  *terminal*|*konsole*|*wezterm*|*alacritty*|*kitty*|*ghostty*|*foot*|*gnome-terminal*|*xterm*)
     ydotool key ctrl+shift+v
     ;;
   *)
