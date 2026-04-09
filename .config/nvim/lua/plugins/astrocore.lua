@@ -46,7 +46,8 @@ return {
         signcolumn = "yes", -- sets vim.opt.signcolumn to yes
         wrap = false, -- sets vim.opt.wrap
         list = true,
-        listchars = { tab = "→ ", trail = "·", nbsp = "␣", lead = "·", eol = "↵" },
+        -- FOR SHOWING WHITESPACE CHARS
+        listchars = { tab = "→ ", trail = "·", nbsp = "␣", lead = "·" }, -- eol = "↵"
       },
       g = { -- vim.g.<key>
         -- configure global vim variables (vim.g)
@@ -79,10 +80,10 @@ return {
         -- this is useful for naming menus
         -- ["<Leader>b"] = { desc = "Buffers" },
 
-        ["<Leader>yy"] = {
+        ["<Leader>yl"] = {
           function()
-            local path = vim.fn.fnamemodify(vim.fn.expand("%"), ":~:.")
-            vim.fn.setreg("+", path .. ":" .. vim.fn.line("."))
+            local path = vim.fn.fnamemodify(vim.fn.expand "%", ":~:.")
+            vim.fn.setreg("+", path .. ":" .. vim.fn.line ".")
           end,
           desc = "Copy relative path with line number",
         },
