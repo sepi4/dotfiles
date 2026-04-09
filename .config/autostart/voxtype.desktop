@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Exec=sh -c "sleep 3 && wezterm -e voxtype"
+# Exec=sh -c "sleep 3 && ghostty -e voxtype"
+Hidden=false
+NoDisplay=false
+Hidden=false
+Name=Voxtype start in terminal
