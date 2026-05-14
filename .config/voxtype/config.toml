@@ -10,6 +10,9 @@
 # Required for `voxtype record toggle` and `voxtype status` commands.
 state_file = "auto"
 
+[osd]
+enabled = false
+
 [hotkey]
 # Key to hold for push-to-talk
 # Common choices: SCROLLLOCK, PAUSE, RIGHTALT, F13-F24
