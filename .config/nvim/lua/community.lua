@@ -12,6 +12,8 @@ return {
   { import = "astrocommunity.pack.typescript" },
   { import = "astrocommunity.pack.java" },
   -- { import = "astrocommunity.pack.rust" },
+  -- { import = "astrocommunity.pack.zig" },
+  --
   -- import/override with your plugins folder
   { import = "astrocommunity.colorscheme" },
   -- { import = "astrocommunity.pack.dart" },
