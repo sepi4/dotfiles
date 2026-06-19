@@ -63,9 +63,9 @@ end
 -- beautiful.init(gears.filesystem.get_themes_dir() .. "zenburn/theme.lua")
 beautiful.init("~/.config/awesome/theme.lua")
 -- beautiful.gap_single_client = false
+--
 -- This is used later as the default terminal and editor to run.
-local terminal = "wezterm" or "kitty" or "alacritty" or "xterm"
--- local terminal = "kitty" or "alacritty" or "xterm"
+local terminal = "kitty" -- wezterm/alacritty/xterm
 local editor = os.getenv("EDITOR") or "nvim"
 local editor_cmd = terminal .. " -e " .. editor
 
@@ -239,7 +239,8 @@ awful.screen.connect_for_each_screen(function(s)
 		height = 24,
 	})
 
-	local bat = awful.widget.watch('bash -c "echo $(cat /sys/class/power_supply/BAT0/capacity)%"', 1)
+	-- local bat = awful.widget.watch('bash -c "echo $(cat /sys/class/power_supply/BAT0/capacity)%"', 1)
+	local bat = awful.widget.watch("bash -c ~/.config/awesome/bat-status.sh", 1)
 
 	-- Add widgets to the wibox
 	s.mywibox:setup({

@@ -9,7 +9,7 @@ else
   status=`cat /sys/class/power_supply/BAT0/status`
 
   if [ "$status" = "Discharging" ]; then
-    bat=`echo "scale=2;$energy_now/$power_now" | bc`
+    bat=`echo "scale=1;$energy_now/$power_now" | bc`
     bat="${bat}h"
     sign="-"
 
@@ -18,14 +18,14 @@ else
     sign="+"
   fi
 
-  power_now_watts=`echo "scale=2;$power_now/1000000" | bc`
+  power_now_watts=`echo "scale=1;$power_now/1000000" | bc`
 
 
 
   pro=`echo "scale=2;$energy_now/$energy_full" | bc`
   pro="${pro:1}"
 
-  echo "${pro}% ${bat} ${sign}${power_now_watts}W | ${date}"
+  echo "${pro}% ${bat} ${sign}${power_now_watts}W"
 fi
 
 # date="$(date +"%d.%m %a %H:%M")"
