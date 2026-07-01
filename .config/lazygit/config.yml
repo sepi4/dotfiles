@@ -1,4 +1,4 @@
 git:
-  paging:
-    colorArg: always
-    pager: delta --side-by-side --paging=never
+  pagers:
+    - colorArg: always
+      pager: delta --side-by-side --paging=never
