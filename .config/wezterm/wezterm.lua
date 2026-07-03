@@ -29,6 +29,7 @@ config.window_padding = { left = 8, right = 8, top = 8, bottom = 8 }
 config.front_end = "WebGpu"   -- better rendering on some setups
 
 config.enable_scroll_bar = true
+config.window_close_confirmation = "NeverPrompt"
 
 -- config.window_padding = { -- remove pannings around
 -- 	left = 2,
