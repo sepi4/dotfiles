@@ -26,7 +26,7 @@ config.window_frame = {
 -- config.window_decorations = "NONE"  -- remove the ugly title bar
 config.enable_tab_bar = false -- if you don't need tabs
 config.window_padding = { left = 8, right = 8, top = 8, bottom = 8 }
-config.front_end = "WebGpu" -- better rendering on some setups
+config.front_end = "WebGpu"   -- better rendering on some setups
 
 config.enable_scroll_bar = true
 
