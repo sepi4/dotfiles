@@ -11,6 +11,7 @@ return {
   { import = "astrocommunity.pack.go" },
   { import = "astrocommunity.pack.typescript" },
   { import = "astrocommunity.pack.java" },
+  { import = "astrocommunity.pack.python" },
   -- { import = "astrocommunity.pack.rust" },
   -- { import = "astrocommunity.pack.zig" },
   --
