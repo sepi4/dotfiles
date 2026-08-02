@@ -15,10 +15,4 @@ return {
       colorscheme = "vscode",
     },
   },
-  {
-    "nvim-lualine/lualine.nvim",
-    opts = function(_, opts)
-      opts.options.theme = "vscode"
-    end,
-  },
 }
