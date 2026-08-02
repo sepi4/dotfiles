@@ -117,3 +117,4 @@ source ~/.shell_common
 
 # Set up fzf key bindings and fuzzy completion
 eval "$(fzf --bash)"
+eval "$(direnv hook bash)"

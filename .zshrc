@@ -70,7 +70,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git virtualenv)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -108,3 +108,9 @@ source $ZSH/oh-my-zsh.sh
 source <(fzf --zsh)
 
 source ~/.shell_common
+eval "$(direnv hook zsh)"
+
+setopt PROMPT_SUBST
+ZSH_THEME_VIRTUALENV_PREFIX="("
+ZSH_THEME_VIRTUALENV_SUFFIX=") "
+PROMPT='$(virtualenv_prompt_info)'"$PROMPT"
