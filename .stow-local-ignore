@@ -20,8 +20,12 @@ _darcs
 
 ^/README.*
 ^/LICENSE.*
+^/node_modules
+^/.npm-cache
 ^/COPYING
 
 
 # my ignores
 IGNORED
+package.json
+package-lock.json

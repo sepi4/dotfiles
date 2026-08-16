@@ -1,1 +1,5 @@
 __pycache__
+
+# Generated local dependencies/cache for pi extensions
+/node_modules/
+/.npm-cache/
