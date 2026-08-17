@@ -6,7 +6,7 @@ export const RUN_FRAME_TAIL_WAVING_RIGHT = [
 	"  v v",
 ];
 export const RUN_FRAME_TAIL_WAVING_LEFT = [
-	" /\\_/\\  ",
+	" /\\_/\\",
 	"( o.o )~",
 	"   v v  ",
 ];
@@ -16,20 +16,15 @@ export const RUN_FRAME_TAIL_RAISED_RIGHT = [
 	"  u u",
 ];
 export const RUN_FRAME_TAIL_RAISED_LEFT = [
-	" /\\_/\\  ",
+	" /\\_/\\",
 	"( o.o )^",
 	"   u u  ",
 ];
 
-export const SITTING_FRAME_RESTING_RIGHT = [
+export const SITTING_FRAME_RESTING = [
 	"  /\\_/\\",
 	" ( o.o )",
 	"  > ^ <",
-];
-export const SITTING_FRAME_RESTING_LEFT = [
-	"  /\\_/\\",
-	" ( o.o )",
-	"  > ^ < ",
 ];
 export const SITTING_FRAME_TAIL_WAGGING_RIGHT = [
 	"   /\\_/\\",
@@ -37,19 +32,14 @@ export const SITTING_FRAME_TAIL_WAGGING_RIGHT = [
 	"  > ^ <",
 ];
 export const SITTING_FRAME_TAIL_WAGGING_LEFT = [
-	" /\\_/\\  ",
+	" /\\_/\\",
 	"( o.o )~",
 	"  > ^ < ",
 ];
-export const SITTING_FRAME_EYES_CLOSED_RIGHT = [
+export const SITTING_FRAME_EYES_CLOSED = [
 	"  /\\_/\\",
 	" ( -.- )",
 	"  > ^ <",
-];
-export const SITTING_FRAME_EYES_CLOSED_LEFT = [
-	"  /\\_/\\",
-	" ( -.- )",
-	"  > ^ < ",
 ];
 
 const allFrames = [
@@ -57,12 +47,10 @@ const allFrames = [
 	...RUN_FRAME_TAIL_WAVING_LEFT,
 	...RUN_FRAME_TAIL_RAISED_RIGHT,
 	...RUN_FRAME_TAIL_RAISED_LEFT,
-	...SITTING_FRAME_RESTING_RIGHT,
-	...SITTING_FRAME_RESTING_LEFT,
+	...SITTING_FRAME_RESTING,
 	...SITTING_FRAME_TAIL_WAGGING_RIGHT,
 	...SITTING_FRAME_TAIL_WAGGING_LEFT,
-	...SITTING_FRAME_EYES_CLOSED_RIGHT,
-	...SITTING_FRAME_EYES_CLOSED_LEFT,
+	...SITTING_FRAME_EYES_CLOSED,
 ];
 
 export const DOG_WIDTH = Math.max(

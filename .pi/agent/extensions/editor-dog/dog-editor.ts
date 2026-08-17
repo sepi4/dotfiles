@@ -10,10 +10,8 @@ import {
 	RUN_FRAME_TAIL_RAISED_RIGHT,
 	RUN_FRAME_TAIL_WAVING_LEFT,
 	RUN_FRAME_TAIL_WAVING_RIGHT,
-	SITTING_FRAME_EYES_CLOSED_LEFT,
-	SITTING_FRAME_EYES_CLOSED_RIGHT,
-	SITTING_FRAME_RESTING_LEFT,
-	SITTING_FRAME_RESTING_RIGHT,
+	SITTING_FRAME_EYES_CLOSED,
+	SITTING_FRAME_RESTING,
 	SITTING_FRAME_TAIL_WAGGING_LEFT,
 	SITTING_FRAME_TAIL_WAGGING_RIGHT,
 } from "./dog-animation";
@@ -33,8 +31,8 @@ enum Phase {
 }
 
 enum Direction {
-	Left = -1,
-	Right = 1,
+	Left = "left",
+	Right = "right",
 }
 
 export class DogEditor extends CustomEditor {
@@ -125,7 +123,8 @@ export class DogEditor extends CustomEditor {
 
 	private getNextPosition(): number {
 		const speed = this.getRandomSpeed();
-		const nextPosition = this.position + this.direction * speed;
+		const step = this.direction === Direction.Right ? 1 : -1;
+		const nextPosition = this.position + step * speed;
 
 		return Math.max(
 			EDGE_MARGIN,
@@ -138,46 +137,51 @@ export class DogEditor extends CustomEditor {
 	}
 
 	private getCurrentFrame(): string[] {
-		const isBlinkFrame = this.frame % BLINK_INTERVAL_FRAMES === 0;
-		const isSittingRestingFrame =
-			this.frame % SITTING_CYCLE_LENGTH_FRAMES <
-			SITTING_RESTING_FRAME_COUNT;
-
-		if (this.phase === Phase.Run) {
-			const isTailWavingFrame =
-				this.frame % RUN_CYCLE_LENGTH_FRAMES === 0;
-
-			if (this.direction === Direction.Left) {
-				if (isTailWavingFrame) {
-					return RUN_FRAME_TAIL_WAVING_LEFT;
-				}
-
+		const key = this.getFrameKey();
+		switch (key) {
+			case "run-waving-left":
+				return RUN_FRAME_TAIL_WAVING_LEFT;
+			case "run-raised-left":
 				return RUN_FRAME_TAIL_RAISED_LEFT;
-			}
-
-			if (isTailWavingFrame) {
+			case "run-waving-right":
 				return RUN_FRAME_TAIL_WAVING_RIGHT;
-			}
-
-			return RUN_FRAME_TAIL_RAISED_RIGHT;
-		} else if (isBlinkFrame) {
-			// Blink occasionally while sitting, independently of the tail wag.
-			if (this.direction === Direction.Left) {
-				return SITTING_FRAME_EYES_CLOSED_LEFT;
-			}
-
-			return SITTING_FRAME_EYES_CLOSED_RIGHT;
-		} else if (isSittingRestingFrame) {
-			if (this.direction === Direction.Left) {
-				return SITTING_FRAME_RESTING_LEFT;
-			}
-
-			return SITTING_FRAME_RESTING_RIGHT;
-		} else if (this.direction === Direction.Left) {
-			return SITTING_FRAME_TAIL_WAGGING_LEFT;
+			case "run-raised-right":
+				return RUN_FRAME_TAIL_RAISED_RIGHT;
+			case "sitting-blink":
+				return SITTING_FRAME_EYES_CLOSED;
+			case "sitting-resting":
+				return SITTING_FRAME_RESTING;
+			case "sitting-wagging-left":
+				return SITTING_FRAME_TAIL_WAGGING_LEFT;
+			case "sitting-wagging-right":
+				return SITTING_FRAME_TAIL_WAGGING_RIGHT;
 		}
+		throw 'No match in getCurrentFrame()'
+	}
 
-		return SITTING_FRAME_TAIL_WAGGING_RIGHT;
+	private getFrameKey(): string {
+		if (this.phase === Phase.Run) {
+			const tail = this.isTailWavingFrame() ? "waving" : "raised";
+			return `run-${tail}-${this.direction}`;
+		}
+		if (this.isBlinkFrame()) return "sitting-blink";
+		if (this.isSittingRestingFrame()) return "sitting-resting";
+		return `sitting-wagging-${this.direction}`;
+	}
+
+	private isTailWavingFrame(): boolean {
+		return this.frame % RUN_CYCLE_LENGTH_FRAMES === 0;
+	}
+
+	private isBlinkFrame(): boolean {
+		return this.frame % BLINK_INTERVAL_FRAMES === 0;
+	}
+
+	private isSittingRestingFrame(): boolean {
+		return (
+			this.frame % SITTING_CYCLE_LENGTH_FRAMES <
+			SITTING_RESTING_FRAME_COUNT
+		);
 	}
 
 	private getPaddedFrame(): string[] {
