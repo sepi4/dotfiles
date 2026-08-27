@@ -240,7 +240,7 @@ awful.screen.connect_for_each_screen(function(s)
 	})
 
 	-- local bat = awful.widget.watch('bash -c "echo $(cat /sys/class/power_supply/BAT0/capacity)%"', 1)
-	local bat = awful.widget.watch("bash -c ~/.config/awesome/bat-status.sh", 1)
+	local bat = awful.widget.watch("bash -c ~/.config/awesome/bat-status.sh", 5)
 
 	-- Add widgets to the wibox
 	s.mywibox:setup({
