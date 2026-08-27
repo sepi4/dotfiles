@@ -68,4 +68,4 @@ case "$STATUS" in
 		;;
 esac
 
-echo "$OUT"
+echo " $OUT"
