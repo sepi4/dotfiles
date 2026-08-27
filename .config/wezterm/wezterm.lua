@@ -5,7 +5,7 @@ local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 
 -- or, changing the font size and color scheme.
-config.font_size = 11
+config.font_size = 10.5
 config.harfbuzz_features = { "calt = 0", "clig = 0", "liga = 0" } -- Remove annoying special characters in coding.
 
 -- config.enable_tab_bar = true

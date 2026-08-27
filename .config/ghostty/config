@@ -25,7 +25,8 @@
 # ==========================
 # # The config file consists of simple key-value pairs,
 # # separated by equals signs.
-font-family = JetBrainsMonoNerdFont
+# font-family = JetBrainsMonoNerdFont
+font-family = Terminess Nerd Font Mono
 font-size = 10.5
 
 window-padding-x = 4
