@@ -26,9 +26,11 @@ apps=(
   "lua"
   "luarocks" # for correct neovim work
   "ripgrep"
-  "lazygit"
   "gdu"
   "xclip" # global clipboard
+  # git
+  "lazygit"
+  "git-delta"
 
   # sys
   "networkmanager" # internet
