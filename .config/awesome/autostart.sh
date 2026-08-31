@@ -8,7 +8,7 @@ function run {
 }
 
 run nm-applet # networkmanager, network-manager-applet (wifi)
-# run copyq # copyq
+run copyq # copyq
 # run blueman-applet # blueman (bluetooth)
 # run pasystray # for archlinux (volumeicon not working)
 
