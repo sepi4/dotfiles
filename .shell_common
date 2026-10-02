@@ -23,7 +23,7 @@ alias nvim-kickstart='NVIM_APPNAME="nvim-kickstart" nvim'
 # battery check alias
 alias bat-check='upower -i /org/freedesktop/UPower/devices/battery_BAT0'
 
-alias update='sudo apt update && sudo apt upgrade'
+alias update='sudo snap refresh && sudo apt update && sudo apt upgrade'
 alias coh2='kmonad ~/dotfiles/IGNORED/coh2/coh2-keys.kbd'
 
 export PATH="$PATH:$HOME/go/bin"
