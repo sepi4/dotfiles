@@ -6,14 +6,23 @@ test("formatting uses window duration, not primary/secondary ordering", () => {
   assert.equal(formatQuota({ rate_limit: {
     primary_window: { limit_window_seconds: 604800, used_percent: 18.2 },
     secondary_window: { limit_window_seconds: 18000, used_percent: 29.6 },
-  } }), "codex: 5h 30% | viikko 18% käytetty");
+  } }), "5h 70% left · weekly 82% left");
 });
 test("missing, invalid, and zero quotas are not confused", () => {
-  assert.equal(formatQuota(null), "codex: kiintiöt eivät saatavilla");
+  assert.equal(formatQuota(null), "codex: quotas unavailable");
   assert.equal(formatQuota({ rate_limit: {
     primary_window: { limit_window_seconds: 18000, used_percent: 0 },
     secondary_window: { limit_window_seconds: 604800, used_percent: 101 },
-  } }), "codex: 5h 0% | viikko — käytetty");
+  } }), "5h 100% left · weekly —");
+});
+test("remaining quota matches the requested format and handles exhaustion", () => {
+  assert.equal(formatQuota({ rate_limit: {
+    primary_window: { limit_window_seconds: 18000, used_percent: 6 },
+    secondary_window: { limit_window_seconds: 604800, used_percent: 30 },
+  } }), "5h 94% left · weekly 70% left");
+  assert.equal(formatQuota({ rate_limit: {
+    primary_window: { limit_window_seconds: 18000, used_percent: 100 },
+  } }), "5h 0% left · weekly —");
 });
 test("JWT account extraction rejects malformed tokens and header injection", () => {
   const token = (id: string) => `x.${Buffer.from(JSON.stringify({
@@ -56,14 +65,14 @@ test("requests only the official endpoint, suppresses errors, and clears on mode
       } }));
     }) as any;
     await command.handler("", ctx);
-    assert.equal(statuses.at(-1), "codex: 5h 30% | viikko — käytetty");
+    assert.equal(statuses.at(-1), "5h 70% left · weekly —");
     ctx.model.baseUrl = "https://untrusted.example";
     await command.handler("", ctx);
     assert.equal(requests, 1);
     ctx.model.baseUrl = "https://chatgpt.com";
     globalThis.fetch = (async () => { throw new Error(`secret ${token}`); }) as any;
     await command.handler("", ctx);
-    assert.equal(statuses.at(-1), "codex: päivitys epäonnistui");
+    assert.equal(statuses.at(-1), "codex: refresh failed");
     assert.ok(!JSON.stringify(statuses).includes(token));
     ctx.model.provider = "openai";
     await handlers.get("model_select")({}, ctx);

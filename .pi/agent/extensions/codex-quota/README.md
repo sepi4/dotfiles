@@ -1,60 +1,51 @@
-# Paikallinen Codex-kiintiönäyttö
+# Codex quota status for Pi
 
-Pi löytää tämän kansion `index.ts`-tiedoston automaattisesti, kun kansio
-on käytössä sijainnissa `~/.pi/agent/extensions/codex-quota/`.
-Testitiedostoa ja README:tä ei ladata laajennuksina.
+A small Pi extension that shows your remaining Codex subscription quota:
 
-Voit kokeilla dotfiles-kansion juuresta ilman automaattisesti ladattavia
-laajennuksia:
-
-```bash
-pi -ne -e ./.pi/agent/extensions/codex-quota/index.ts
+```text
+5h 94% left · weekly 70% left
 ```
 
-Kirjaudu Pi:ssä `/login openai-codex` ja valitse sen malli komennolla
-`/model`. Tavallinen OpenAI API-avain ja natiivi `openai`-kirjautuminen
-eivät ole tämän pienen laajennuksen tukemia käyttötietolähteitä.
+## Setup
 
-Näyttö: `codex: 5h 30% | viikko 18% käytetty`.
-Prosentit tarkoittavat kulutettua kiintiötä, eivät kellotettua työaikaa.
-Puuttuva ikkuna näkyy viivana, ei nollana. Lisäkiintiöt ja mallikohtaiset
-kiintiöt (esimerkiksi Spark) eivät kuulu tähän versioon.
+1. Place this folder in `~/.pi/agent/extensions/codex-quota/`, with `index.ts`
+   directly inside it.
+2. Restart Pi or run `/reload`.
+3. Log in with `/login openai-codex` and select an `openai-codex` model using
+   `/model`.
 
-Päivitys tapahtuu käynnistyksessä, mallin vaihtuessa ja viiden minuutin välein.
-Komento `/codex-quota` päivittää tiedot käsin. Muilla palveluntarjoajilla
-näyttö piilotetaan. Verkko- tai kirjautumisvirhe korvaa prosentit virhetekstillä.
+No extra dependencies are needed. Requires Node.js 22.19 or newer; developed
+against Pi 1.0.4.
 
-Jos dotfiles-järjestelysi ei jo linkitä tai kopioi tätä kansiota käyttöön,
-voit kopioida sen dotfiles-kansion juuresta:
+## Usage
 
-```bash
-mkdir -p ~/.pi/agent/extensions/codex-quota
-cp ./.pi/agent/extensions/codex-quota/index.ts ~/.pi/agent/extensions/codex-quota/index.ts
-```
+The status updates at startup, on model changes, and every five minutes,
+including during long-running tasks. Run `/codex-quota` to refresh it manually.
 
-Poista mahdollinen aiempi `~/.pi/agent/extensions/codex-quota.ts`-kopio,
-jotta laajennus ei lataudu kahdesti. Käynnistä Pi uudelleen tai suorita
-`/reload`. Älä lataa samaa laajennusta lisäksi `-e`-valitsimella.
-Poista käytöstä poistamalla käyttöön otettu kopio tai linkki ja suorittamalla
-`/reload`.
+Percentages show remaining quota, not working time. Missing windows show a dash.
+The status is hidden when another provider is selected. Failed updates show an
+error message and are retried at the next scheduled update.
 
-## Tietoturva ja rajoitukset
+To disable the extension, remove its folder and run `/reload`.
 
-- Ei ulkopuolisia riippuvuuksia, tiedostojen lukemista, aliohjelmia tai lokitusta.
-- Pyytää OAuth-tunnisteen Pi:n omasta mallirekisteristä. Pi voi uusia ja
-  tallentaa kirjautumisen normaalin kirjautumismekanisminsa kautta.
-- Tarkistaa mallin ja ratkaistun kirjautumisen palveluosoitteen ennen käyttöä.
-- Lähettää tunnisteen ja tilitunnisteen vain GET-pyyntöön osoitteeseen
-  `https://chatgpt.com/backend-api/wham/usage`. Ei seuraa uudelleenohjauksia.
-- Ei muuta mallipyyntöjä, Fast-asetuksia tai käyttökiintiöitä.
-- Aikakatkaisu 10 sekuntia; sulkeminen ja mallinvaihto keskeyttävät verkkopyynnön.
-- Rajapinta on dokumentoimaton ja voi muuttua. Tämä ei ole OpenAI:n virallinen
-  laajennus eikä täydellisen turvallisuuden takuu.
-- Tehty paikallisen Pi 1.0.4:n rajapinnoille. Testattu simuloiduilla vastauksilla,
-  ei käyttäjän oikeilla kirjautumistiedoilla tai palvelun oikealla vastauksella.
+## Limitations and privacy
 
-Testit ilman verkkoa tai kirjautumistunnisteita:
+- Requires Codex subscription login. OpenAI API keys and native `openai` login
+  are not supported.
+- Shows the shared five-hour and weekly quotas, not additional model-specific
+  quotas.
+- Uses an undocumented OpenAI endpoint that may change.
+- Gets credentials through Pi and sends them only to
+  `https://chatgpt.com/backend-api/wham/usage`, without following redirects.
+- Does not read files, log credentials, or change model requests or settings.
+  Pi itself may refresh and store credentials as part of normal login handling.
+
+## Tests
+
+From this extension's folder, run:
 
 ```bash
-node --experimental-strip-types --test .pi/agent/extensions/codex-quota/codex-quota.test.ts
+node --experimental-strip-types --test codex-quota.test.ts
 ```
+
+Tests use simulated responses, without network access or real credentials.

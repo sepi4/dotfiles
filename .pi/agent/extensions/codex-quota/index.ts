@@ -21,15 +21,15 @@ export function formatQuota(data: unknown): string {
     const used = window?.used_percent;
     if (typeof seconds === "number" && typeof used === "number" &&
         Number.isFinite(used) && used >= 0 && used <= 100) {
-      values.set(seconds, Math.round(used));
+      values.set(seconds, Math.round(100 - used));
     }
   }
   const fiveHour = values.get(5 * 60 * 60);
   const weekly = values.get(7 * 24 * 60 * 60);
   if (fiveHour === undefined && weekly === undefined) {
-    return "codex: kiintiöt eivät saatavilla";
+    return "codex: quotas unavailable";
   }
-  return `codex: 5h ${fiveHour === undefined ? "—" : `${fiveHour}%`} | viikko ${weekly === undefined ? "—" : `${weekly}%`} käytetty`;
+  return `5h ${fiveHour === undefined ? "—" : `${fiveHour}% left`} · weekly ${weekly === undefined ? "—" : `${weekly}% left`}`;
 }
 
 export function accountIdFromToken(token: string): string | undefined {
@@ -79,21 +79,21 @@ export default function (pi: ExtensionAPI) {
         ctx.ui.setStatus(STATUS_KEY, text);
       }
     };
-    show("codex: päivitetään…");
+    show("codex: refreshing…");
     try {
       if (!officialUrl(model.baseUrl) || !ctx.modelRegistry.isUsingOAuth(model)) {
-        show("codex: vaatii virallisen tilauskirjautumisen");
+        show("codex: official subscription login required");
         return;
       }
       const auth = await ctx.modelRegistry.getApiKeyAndHeaders(model);
       if (request.signal.aborted || currentGeneration !== generation) return;
       if (!auth.ok || !auth.apiKey || (auth.baseUrl && !officialUrl(auth.baseUrl))) {
-        show("codex: kirjautuminen ei saatavilla");
+        show("codex: authentication unavailable");
         return;
       }
       const accountId = accountIdFromToken(auth.apiKey);
       if (!accountId) {
-        show("codex: tilitunniste ei saatavilla");
+        show("codex: account ID unavailable");
         return;
       }
       const response = await fetch(ENDPOINT, {
@@ -110,14 +110,14 @@ export default function (pi: ExtensionAPI) {
       if (!response.ok) {
         await response.body?.cancel();
         show(response.status === 401 || response.status === 403
-          ? "codex: kirjaudu uudelleen" : `codex: HTTP ${response.status}`);
+          ? "codex: please log in again" : `codex: HTTP ${response.status}`);
         return;
       }
       show(formatQuota(await response.json()));
     } catch {
       // Do not print errors: they may include credentials or response bodies.
       if (currentGeneration === generation) {
-        ctx.ui.setStatus(STATUS_KEY, "codex: päivitys epäonnistui");
+        ctx.ui.setStatus(STATUS_KEY, "codex: refresh failed");
       }
     } finally {
       clearTimeout(timeout);
@@ -140,7 +140,7 @@ export default function (pi: ExtensionAPI) {
     void refresh(ctx);
   });
   pi.registerCommand("codex-quota", {
-    description: "Päivitä Codex-tilauksen kulutetut käyttöprosentit",
+    description: "Refresh remaining Codex subscription quota",
     handler: async (_args, ctx) => { await refresh(ctx); },
   });
   pi.on("session_shutdown", () => {
