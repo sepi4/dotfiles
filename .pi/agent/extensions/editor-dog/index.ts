@@ -1,9 +1,9 @@
 /**
  * Editor Dog 🐕 — a little dog that runs above the input editor.
  *
- * Install: put this file in `.pi/extensions/` (project) or
- * `~/.pi/agent/extensions/` (global), then run `/reload`.
- * Quick test: `pi -e ./editor-dog.ts`
+ * Install: put this folder in `.pi/extensions/editor-dog/` (project) or
+ * `~/.pi/agent/extensions/editor-dog/` (global), then run `/reload`.
+ * Quick test from dotfiles: `pi -ne -e ./.pi/agent/extensions/editor-dog/index.ts`
  */
 
 import {
@@ -11,7 +11,7 @@ import {
 	type KeybindingsManager,
 } from "@earendil-works/pi-coding-agent";
 import type { EditorTheme, TUI } from "@earendil-works/pi-tui";
-import { DogEditor } from "./editor-dog/dog-editor";
+import { DogEditor } from "./dog-editor";
 
 let dog: DogEditor | undefined;
 
