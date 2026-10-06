@@ -3,3 +3,29 @@ __pycache__
 # Generated local dependencies/cache for pi extensions
 /node_modules/
 /.npm-cache/
+
+# Keep Pi runtime data, credentials and sessions out of Git.
+# Allow only the personal configuration/resources listed below.
+/.pi/*
+!/.pi/agent/
+/.pi/agent/*
+!/.pi/agent/AGENTS.md
+!/.pi/agent/extensions/
+!/.pi/agent/skills/
+!/.pi/agent/prompts/
+!/.pi/agent/themes/
+!/.pi/agent/keybindings.json
+
+# Local secrets (including secrets inside allowed resource directories)
+.env
+.env.*
+!.env.example
+!.env.sample
+auth.json
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa
+id_ed25519
+id_ecdsa
