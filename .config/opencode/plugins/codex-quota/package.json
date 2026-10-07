@@ -1,0 +1,24 @@
+{
+  "name": "local-opencode-codex-quota",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./index.ts",
+    "./tui": "./tui.tsx"
+  },
+  "scripts": {
+    "test": "node --test codex-quota.test.ts"
+  },
+  "dependencies": {
+    "@opencode/plugin": "2.0.24"
+  },
+  "overrides": {
+    "seroval": "1.6.8"
+  },
+  "peerDependencies": {
+    "@opentui/core": ">=0.5.8",
+    "@opentui/solid": ">=0.5.8",
+    "solid-js": ">=1.9.0"
+  }
+}

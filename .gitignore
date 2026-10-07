@@ -3,6 +3,7 @@ __pycache__
 # Generated local dependencies/cache for pi extensions
 /node_modules/
 /.npm-cache/
+/.config/opencode/plugins/*/node_modules/
 
 # Keep Pi runtime data, credentials and sessions out of Git.
 # Allow only the personal configuration/resources listed below.
