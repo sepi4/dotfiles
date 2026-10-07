@@ -24,6 +24,30 @@ test("remaining quota matches the requested format and handles exhaustion", () =
     primary_window: { limit_window_seconds: 18000, used_percent: 100 },
   } }), "5h 0% left · weekly —");
 });
+test("reset countdowns use timestamps and compact day/hour/minute durations", () => {
+  const now = 1_800_000_000_000;
+  const data = { rate_limit: {
+    primary_window: { limit_window_seconds: 18000, used_percent: 17,
+      reset_at: now / 1000 + 2 * 3600 + 34 * 60, reset_after_seconds: 1 },
+    secondary_window: { limit_window_seconds: 604800, used_percent: 31,
+      reset_at: now / 1000 + 3 * 86400 + 5 * 3600 },
+  } };
+  assert.equal(formatQuota(data, now), "5h 83% left (2h 34m) · weekly 69% left (3d 5h)");
+  assert.equal(formatQuota(data, now + 60_000), "5h 83% left (2h 33m) · weekly 69% left (3d 4h 59m)");
+});
+test("reset countdowns handle fallback, rounding, expiry, and invalid values", () => {
+  const quota = (reset: object) => ({ rate_limit: {
+    primary_window: { limit_window_seconds: 18000, used_percent: 0, ...reset },
+  } });
+  assert.equal(formatQuota(quota({ reset_after_seconds: 61 }), 0), "5h 100% left (2m) · weekly —");
+  assert.equal(formatQuota(quota({ reset_after_seconds: 3600 }), 0), "5h 100% left (1h) · weekly —");
+  assert.equal(formatQuota(quota({ reset_at: 0 }), 1000), "5h 100% left (0m) · weekly —");
+  assert.equal(formatQuota(quota({ reset_at: NaN, reset_after_seconds: 1 }), 0), "5h 100% left (1m) · weekly —");
+  for (const reset of [{}, { reset_at: "123" }, { reset_at: Infinity },
+    { reset_after_seconds: -1 }, { reset_after_seconds: NaN }]) {
+    assert.equal(formatQuota(quota(reset), 0), "5h 100% left · weekly —");
+  }
+});
 test("JWT account extraction rejects malformed tokens and header injection", () => {
   const token = (id: string) => `x.${Buffer.from(JSON.stringify({
     "https://api.openai.com/auth": { chatgpt_account_id: id },

@@ -11,17 +11,33 @@ function record(value: unknown): RecordValue | undefined {
     ? value as RecordValue : undefined;
 }
 
-export function formatQuota(data: unknown): string {
+function resetCountdown(window: RecordValue, now: number): string {
+  const resetAt = window.reset_at;
+  const resetAfter = window.reset_after_seconds;
+  const seconds = typeof resetAt === "number" && Number.isFinite(resetAt) && resetAt >= 0
+    ? resetAt - now / 1000
+    : typeof resetAfter === "number" && Number.isFinite(resetAfter) && resetAfter >= 0
+      ? resetAfter : undefined;
+  if (seconds === undefined) return "";
+  const minutes = Math.ceil(Math.max(0, seconds) / 60);
+  const days = Math.floor(minutes / 1440);
+  const hours = Math.floor(minutes % 1440 / 60);
+  const parts = [days ? `${days}d` : "", hours ? `${hours}h` : "",
+    minutes % 60 || minutes === 0 ? `${minutes % 60}m` : ""].filter(Boolean);
+  return ` (${parts.join(" ")})`;
+}
+
+export function formatQuota(data: unknown, now = Date.now()): string {
   const limits = record(record(data)?.rate_limit);
   const windows = [limits?.primary_window, limits?.secondary_window];
-  const values = new Map<number, number>();
+  const values = new Map<number, string>();
   for (const candidate of windows) {
     const window = record(candidate);
     const seconds = window?.limit_window_seconds;
     const used = window?.used_percent;
-    if (typeof seconds === "number" && typeof used === "number" &&
+    if (window && typeof seconds === "number" && typeof used === "number" &&
         Number.isFinite(used) && used >= 0 && used <= 100) {
-      values.set(seconds, Math.round(100 - used));
+      values.set(seconds, `${Math.round(100 - used)}% left${resetCountdown(window, now)}`);
     }
   }
   const fiveHour = values.get(5 * 60 * 60);
@@ -29,7 +45,7 @@ export function formatQuota(data: unknown): string {
   if (fiveHour === undefined && weekly === undefined) {
     return "codex: quotas unavailable";
   }
-  return `5h ${fiveHour === undefined ? "—" : `${fiveHour}% left`} · weekly ${weekly === undefined ? "—" : `${weekly}% left`}`;
+  return `5h ${fiveHour ?? "—"} · weekly ${weekly ?? "—"}`;
 }
 
 export function accountIdFromToken(token: string): string | undefined {
