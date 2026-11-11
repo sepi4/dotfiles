@@ -1,0 +1,58 @@
+;; Kanata version of coh2-keys.kbd.
+;; Only the remapped keys are listed; every other key passes through unchanged.
+
+(defcfg
+  process-unmapped-keys yes
+  ;; Without linux-dev Kanata grabs every keyboard it finds.
+  ;; linux-dev /dev/input/by-id/usb-GXT_865_Gaming_keyboard_GXT_865_Gaming_keyboard-event-kbd
+)
+
+(defsrc
+  kp/  kp*  kp-
+  del
+  ret
+  spc
+  esc
+)
+
+;; In-game: space sends kp0 so it can be bound in the game.
+(deflayer coh0
+  @off @on  @untog
+  @dt-del
+  @runtog
+  kp0
+  esc
+)
+
+;; Chat open: space is a normal space. Esc closes the chat, so it also returns to coh0.
+(deflayer cohS
+  @off @on  @tog
+  @dt-del
+  @rtog
+  spc
+  @etog
+)
+
+(deflayer base
+  @off @on  @untog
+  del
+  ret
+  spc
+  esc
+)
+
+(defalias
+  rtog   (multi ret (layer-switch coh0))
+  runtog (multi ret (layer-switch cohS))
+  etog   (multi esc (layer-switch coh0))
+
+  tog   (layer-switch coh0)
+  untog (layer-switch cohS)
+
+  on  (layer-switch coh0)
+  off (layer-switch base)
+
+  my-seq (macro ret g g ret 100 ret / l 100 ret)
+  ;; Single tap: Delete. Double tap within 300 ms: "gg" and /l.
+  dt-del (tap-dance 300 (del @my-seq))
+)
