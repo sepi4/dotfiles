@@ -114,3 +114,7 @@ setopt PROMPT_SUBST
 ZSH_THEME_VIRTUALENV_PREFIX="("
 ZSH_THEME_VIRTUALENV_SUFFIX=") "
 PROMPT='$(virtualenv_prompt_info)'"$PROMPT"
+
+
+# Added by Antigravity CLI installer
+export PATH="/home/sepi4/.local/bin:$PATH"

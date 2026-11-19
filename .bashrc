@@ -118,3 +118,7 @@ source ~/.shell_common
 # Set up fzf key bindings and fuzzy completion
 eval "$(fzf --bash)"
 eval "$(direnv hook bash)"
+
+
+# Added by Antigravity CLI installer
+export PATH="/home/sepi4/.local/bin:$PATH"
