@@ -38,6 +38,16 @@ jq -r --arg branch "$BRANCH" --argjson dirty "$DIRTY" '
     elif $p >= 25 then "\u001b[33m"
     else "\u001b[32m"
     end;
+  def ctx_color($used_k; $p; $max_k):
+    if $max_k > 200 then
+      if $used_k >= 200 then "\u001b[31m"
+      elif $used_k >= 150 then "\u001b[38;5;208m"
+      elif $used_k >= 100 then "\u001b[33m"
+      else "\u001b[32m"
+      end
+    else
+      color($p)
+    end;
   def reset: "\u001b[0m";
   def dim: "\u001b[2m";
   def cyan: "\u001b[36m";
@@ -56,7 +66,7 @@ jq -r --arg branch "$BRANCH" --argjson dirty "$DIRTY" '
     (($c.used_percentage // 0) | round) as $p |
     ((($c.used_percentage // 0) * $c.context_window_size / 100000) | round) as $used_k |
     (($c.context_window_size / 1000) | round) as $max_k |
-    "Ctx \(fmt_pct($p)) \(dim)(\($used_k)k/\($max_k)k)\(reset)"
+    "Ctx \(ctx_color($used_k; $p; $max_k))\($p)%\(reset) \(dim)(\($used_k)k/\($max_k)k)\(reset)"
   else
     "Ctx -"
   end) as $ctx |
