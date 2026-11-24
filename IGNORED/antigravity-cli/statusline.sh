@@ -1,5 +1,37 @@
 #!/usr/bin/env bash
-jq -r '
+INPUT=$(cat)
+
+{
+  IFS= read -r VCS_BRANCH
+  IFS= read -r VCS_DIRTY
+  IFS= read -r DIR
+} < <(
+  jq -r '
+    (.vcs.branch // ""),
+    (if .vcs.dirty == true then "true" elif .vcs.dirty == false then "false" else "" end),
+    (.workspace.current_dir // .cwd // "")
+  ' <<< "$INPUT"
+)
+
+BRANCH=""
+DIRTY="false"
+
+if [[ -n "$VCS_BRANCH" ]]; then
+  BRANCH="$VCS_BRANCH"
+  [[ "$VCS_DIRTY" == "true" ]] && DIRTY="true"
+else
+  TARGET_DIR="${DIR:-$PWD}"
+  if BRANCH=$(git -C "$TARGET_DIR" symbolic-ref --short HEAD 2>/dev/null || git -C "$TARGET_DIR" rev-parse --short HEAD 2>/dev/null); then
+    if ! git -C "$TARGET_DIR" diff --quiet --ignore-submodules 2>/dev/null \
+       || ! git -C "$TARGET_DIR" diff --cached --quiet --ignore-submodules 2>/dev/null; then
+      DIRTY="true"
+    fi
+  else
+    BRANCH=""
+  fi
+fi
+
+jq -r --arg branch "$BRANCH" --argjson dirty "$DIRTY" '
   def color($p):
     if $p >= 75 then "\u001b[31m"
     elif $p >= 50 then "\u001b[38;5;208m"
@@ -8,6 +40,7 @@ jq -r '
     end;
   def reset: "\u001b[0m";
   def dim: "\u001b[2m";
+  def cyan: "\u001b[36m";
   def pct($v): (((1 - $v.remaining_fraction) * 100) | round);
   def fmt_pct($p): "\(color($p))\($p)%\(reset)";
   def active($q; $k):
@@ -28,17 +61,20 @@ jq -r '
     "Ctx -"
   end) as $ctx |
   (.quota // {}) as $q |
-  (
-    [
-      group($q; "Gem"; "gemini-5h"; "gemini-weekly"),
-      group($q; "3p"; "3p-5h"; "3p-weekly"),
-      (
-        $q | to_entries[]
-        | select((.key | IN("gemini-5h", "gemini-weekly", "3p-5h", "3p-weekly") | not)
-                 and (.value | type == "object" and (.disabled != true) and (.remaining_fraction != null)))
-        | "\(.key | sub("weekly"; "w")):\(fmt_pct(pct(.value)))"
-      )
-    ] | join(" \(dim)|\(reset) ")
-  ) as $qs |
-  if ($qs | length) > 0 then "\($ctx) \(dim)|\(reset) \($qs)" else $ctx end
-'
+  [
+    (if ($branch | length) > 0 then
+      "\(cyan)\($branch)\(if $dirty then "\u001b[33m*" else "" end)\(reset)"
+    else
+      empty
+    end),
+    $ctx,
+    group($q; "Gem"; "gemini-5h"; "gemini-weekly"),
+    group($q; "3p"; "3p-5h"; "3p-weekly"),
+    (
+      $q | to_entries[]
+      | select((.key | IN("gemini-5h", "gemini-weekly", "3p-5h", "3p-weekly") | not)
+               and (.value | type == "object" and (.disabled != true) and (.remaining_fraction != null)))
+      | "\(.key | sub("weekly"; "w")):\(fmt_pct(pct(.value)))"
+    )
+  ] | join(" \(dim)|\(reset) ")
+' <<< "$INPUT"
